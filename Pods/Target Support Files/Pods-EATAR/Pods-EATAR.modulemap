@@ -1,0 +1,6 @@
+module Pods_EATAR {
+  umbrella header "Pods-EATAR-umbrella.h"
+
+  export *
+  module * { export * }
+}
