@@ -9,11 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    let landingPageScreen = LandingPageView()
+    let signinScreen = SignInView()
+    let signupScreen = SignupView()
+    
+    override func loadView() {
+        view = landingPageScreen
+        
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        landingPageScreen.loginButton.addTarget(self, action: #selector(onButtonLoginTapped), for: .touchUpInside)
+        
+        landingPageScreen.signupButton.addTarget(self, action: #selector(onButtonSignupTapped), for: .touchUpInside)
+    }
+    
+    @objc func onButtonLoginTapped(){
+        let signinScreen = SignInViewController()
+        navigationController?.pushViewController(signinScreen, animated: true)
+    }
+    
+    @objc func onButtonSignupTapped(){
+        let signupScreen = SignUpViewController()
+        navigationController?.pushViewController(signupScreen, animated: true)
+    }
 
 }
 
