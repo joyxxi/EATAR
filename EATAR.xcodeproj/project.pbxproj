@@ -7,19 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1654D5412CDBF95800DEBBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1654D53B2CDBF95800DEBBD7 /* Main.storyboard */; };
-		1654D5422CDBF95800DEBBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1654D53C2CDBF95800DEBBD7 /* Assets.xcassets */; };
-		1654D5432CDBF95800DEBBD7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1654D53F2CDBF95800DEBBD7 /* Info.plist */; };
-		1654D5442CDBF95800DEBBD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1654D53E2CDBF95800DEBBD7 /* LaunchScreen.storyboard */; };
-		1654D5452CDBF95800DEBBD7 /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5352CDBF95800DEBBD7 /* EditPostView.swift */; };
-		1654D5462CDBF95800DEBBD7 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D52F2CDBF95800DEBBD7 /* PostDetailsView.swift */; };
-		1654D5482CDBF95800DEBBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5372CDBF95800DEBBD7 /* AppDelegate.swift */; };
-		1654D5492CDBF95800DEBBD7 /* JoinMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5312CDBF95800DEBBD7 /* JoinMeView.swift */; };
-		1654D54A2CDBF95800DEBBD7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5332CDBF95800DEBBD7 /* RatingView.swift */; };
-		1654D54B2CDBF95800DEBBD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5382CDBF95800DEBBD7 /* SceneDelegate.swift */; };
-		1654D54C2CDBF95800DEBBD7 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5322CDBF95800DEBBD7 /* ReviewView.swift */; };
-		1654D54D2CDBF95800DEBBD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D5392CDBF95800DEBBD7 /* ViewController.swift */; };
-		1654D54E2CDBF95800DEBBD7 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654D52D2CDBF95800DEBBD7 /* CreatePostView.swift */; };
 		21E299113ADE888E9F904A18 /* libPods-EATAR-EATARUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */; };
 		44E4228C5275926668C2EF14 /* libPods-EATARTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */; };
 		67A2142721C49DF54229E467 /* libPods-EATAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */; };
@@ -54,19 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1654D52D2CDBF95800DEBBD7 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
-		1654D52F2CDBF95800DEBBD7 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
-		1654D5312CDBF95800DEBBD7 /* JoinMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinMeView.swift; sourceTree = "<group>"; };
-		1654D5322CDBF95800DEBBD7 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
-		1654D5332CDBF95800DEBBD7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
-		1654D5352CDBF95800DEBBD7 /* EditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostView.swift; sourceTree = "<group>"; };
-		1654D5372CDBF95800DEBBD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1654D5382CDBF95800DEBBD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1654D5392CDBF95800DEBBD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1654D53A2CDBF95800DEBBD7 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1654D53C2CDBF95800DEBBD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1654D53D2CDBF95800DEBBD7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1654D53F2CDBF95800DEBBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A256E711AB0421BE9357017 /* Pods-EATAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR.release.xcconfig"; path = "Target Support Files/Pods-EATAR/Pods-EATAR.release.xcconfig"; sourceTree = "<group>"; };
 		3494C0011A27BE997AB80AE1 /* Pods-EATAR-EATARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR-EATARUITests.release.xcconfig"; path = "Target Support Files/Pods-EATAR-EATARUITests/Pods-EATAR-EATARUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,58 +99,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1654D52E2CDBF95800DEBBD7 /* CreatePostScreen */ = {
-			isa = PBXGroup;
-			children = (
-				1654D52D2CDBF95800DEBBD7 /* CreatePostView.swift */,
-			);
-			path = CreatePostScreen;
-			sourceTree = "<group>";
-		};
-		1654D5302CDBF95800DEBBD7 /* PostDetails Group */ = {
-			isa = PBXGroup;
-			children = (
-				1654D52F2CDBF95800DEBBD7 /* PostDetailsView.swift */,
-			);
-			path = "PostDetails Group";
-			sourceTree = "<group>";
-		};
-		1654D5342CDBF95800DEBBD7 /* ReviewScreen */ = {
-			isa = PBXGroup;
-			children = (
-				1654D5312CDBF95800DEBBD7 /* JoinMeView.swift */,
-				1654D5322CDBF95800DEBBD7 /* ReviewView.swift */,
-				1654D5332CDBF95800DEBBD7 /* RatingView.swift */,
-			);
-			path = ReviewScreen;
-			sourceTree = "<group>";
-		};
-		1654D5362CDBF95800DEBBD7 /* EditPostScreen */ = {
-			isa = PBXGroup;
-			children = (
-				1654D5352CDBF95800DEBBD7 /* EditPostView.swift */,
-			);
-			path = EditPostScreen;
-			sourceTree = "<group>";
-		};
-		1654D5402CDBF95800DEBBD7 /* Post&Review */ = {
-			isa = PBXGroup;
-			children = (
-				1654D52E2CDBF95800DEBBD7 /* CreatePostScreen */,
-				1654D5302CDBF95800DEBBD7 /* PostDetails Group */,
-				1654D5342CDBF95800DEBBD7 /* ReviewScreen */,
-				1654D5362CDBF95800DEBBD7 /* EditPostScreen */,
-				1654D5372CDBF95800DEBBD7 /* AppDelegate.swift */,
-				1654D5382CDBF95800DEBBD7 /* SceneDelegate.swift */,
-				1654D5392CDBF95800DEBBD7 /* ViewController.swift */,
-				1654D53B2CDBF95800DEBBD7 /* Main.storyboard */,
-				1654D53C2CDBF95800DEBBD7 /* Assets.xcassets */,
-				1654D53E2CDBF95800DEBBD7 /* LaunchScreen.storyboard */,
-				1654D53F2CDBF95800DEBBD7 /* Info.plist */,
-			);
-			path = "Post&Review";
-			sourceTree = "<group>";
-		};
 		2ED2060508368287CFC58028 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +147,6 @@
 		A9657E292CD44D3500ED9945 /* EATAR */ = {
 			isa = PBXGroup;
 			children = (
-				1654D5402CDBF95800DEBBD7 /* Post&Review */,
 				6CA4FA482CDB5A120085FDCD /* Auth */,
 				A9657E5A2CD4526C00ED9945 /* Profile */,
 				A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */,
@@ -379,10 +300,6 @@
 			files = (
 				A9657E342CD44D3600ED9945 /* Assets.xcassets in Resources */,
 				A9657E372CD44D3600ED9945 /* Base in Resources */,
-				1654D5412CDBF95800DEBBD7 /* Main.storyboard in Resources */,
-				1654D5422CDBF95800DEBBD7 /* Assets.xcassets in Resources */,
-				1654D5432CDBF95800DEBBD7 /* Info.plist in Resources */,
-				1654D5442CDBF95800DEBBD7 /* LaunchScreen.storyboard in Resources */,
 				A9657E322CD44D3500ED9945 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,15 +431,6 @@
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
 				A949F15A2CD855C900E49EEC /* ProfileDetail.swift in Sources */,
-				1654D5452CDBF95800DEBBD7 /* EditPostView.swift in Sources */,
-				1654D5462CDBF95800DEBBD7 /* PostDetailsView.swift in Sources */,
-				1654D5482CDBF95800DEBBD7 /* AppDelegate.swift in Sources */,
-				1654D5492CDBF95800DEBBD7 /* JoinMeView.swift in Sources */,
-				1654D54A2CDBF95800DEBBD7 /* RatingView.swift in Sources */,
-				1654D54B2CDBF95800DEBBD7 /* SceneDelegate.swift in Sources */,
-				1654D54C2CDBF95800DEBBD7 /* ReviewView.swift in Sources */,
-				1654D54D2CDBF95800DEBBD7 /* ViewController.swift in Sources */,
-				1654D54E2CDBF95800DEBBD7 /* CreatePostView.swift in Sources */,
 				A9657E2D2CD44D3500ED9945 /* SceneDelegate.swift in Sources */,
 				A949F15C2CD855D900E49EEC /* ProfileEdition.swift in Sources */,
 			);
@@ -561,22 +469,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1654D53B2CDBF95800DEBBD7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1654D53A2CDBF95800DEBBD7 /* Main.storyboard */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1654D53E2CDBF95800DEBBD7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1654D53D2CDBF95800DEBBD7 /* LaunchScreen.storyboard */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		A9657E302CD44D3500ED9945 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
