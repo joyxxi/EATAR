@@ -34,15 +34,13 @@ class LandingPageView: UIView {
     
     func setupBackgroundImage() {
         backgroundImageView = UIImageView()
-        backgroundImageView.image = UIImage(named: "bg_pic") // 確保圖片文件名正確
+        backgroundImageView.image = UIImage(named: "bg_pic")
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backgroundImageView)
         
-        // 將背景圖片放置在所有其他視圖的後面
         self.sendSubviewToBack(backgroundImageView)
         
-        // 設置背景圖片的約束，使其填滿整個視圖
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),

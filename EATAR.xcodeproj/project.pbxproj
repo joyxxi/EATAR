@@ -10,6 +10,10 @@
 		21E299113ADE888E9F904A18 /* libPods-EATAR-EATARUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */; };
 		44E4228C5275926668C2EF14 /* libPods-EATARTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */; };
 		67A2142721C49DF54229E467 /* libPods-EATAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */; };
+		6C59D74B2CF2D6A3005A1CDD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C59D74A2CF2D6A3005A1CDD /* FirebaseAuth */; };
+		6C59D74D2CF2D6A3005A1CDD /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6C59D74C2CF2D6A3005A1CDD /* FirebaseCore */; };
+		6C59D74F2CF2D6A3005A1CDD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6C59D74E2CF2D6A3005A1CDD /* FirebaseFirestore */; };
+		6C59D7512CF2ED60005A1CDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C59D7502CF2ED60005A1CDD /* GoogleService-Info.plist */; };
 		A949F15A2CD855C900E49EEC /* ProfileDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A949F1592CD855C900E49EEC /* ProfileDetail.swift */; };
 		A949F15C2CD855D900E49EEC /* ProfileEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A949F15B2CD855D900E49EEC /* ProfileEdition.swift */; };
 		A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */; };
@@ -44,6 +48,7 @@
 		1A256E711AB0421BE9357017 /* Pods-EATAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR.release.xcconfig"; path = "Target Support Files/Pods-EATAR/Pods-EATAR.release.xcconfig"; sourceTree = "<group>"; };
 		3494C0011A27BE997AB80AE1 /* Pods-EATAR-EATARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR-EATARUITests.release.xcconfig"; path = "Target Support Files/Pods-EATAR-EATARUITests/Pods-EATAR-EATARUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C59D7502CF2ED60005A1CDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		752CE158009287938DF39C39 /* Pods-EATAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR.debug.xcconfig"; path = "Target Support Files/Pods-EATAR/Pods-EATAR.debug.xcconfig"; sourceTree = "<group>"; };
 		A949F1592CD855C900E49EEC /* ProfileDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetail.swift; sourceTree = "<group>"; };
 		A949F15B2CD855D900E49EEC /* ProfileEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdition.swift; sourceTree = "<group>"; };
@@ -77,6 +82,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A2142721C49DF54229E467 /* libPods-EATAR.a in Frameworks */,
+				6C59D74F2CF2D6A3005A1CDD /* FirebaseFirestore in Frameworks */,
+				6C59D74D2CF2D6A3005A1CDD /* FirebaseCore in Frameworks */,
+				6C59D74B2CF2D6A3005A1CDD /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +155,7 @@
 		A9657E292CD44D3500ED9945 /* EATAR */ = {
 			isa = PBXGroup;
 			children = (
+				6C59D7502CF2ED60005A1CDD /* GoogleService-Info.plist */,
 				6CA4FA482CDB5A120085FDCD /* Auth */,
 				A9657E5A2CD4526C00ED9945 /* Profile */,
 				A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */,
@@ -282,6 +291,9 @@
 				Base,
 			);
 			mainGroup = A9657E1E2CD44D3400ED9945;
+			packageReferences = (
+				6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = A9657E282CD44D3500ED9945 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -299,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9657E342CD44D3600ED9945 /* Assets.xcassets in Resources */,
+				6C59D7512CF2ED60005A1CDD /* GoogleService-Info.plist in Resources */,
 				A9657E372CD44D3600ED9945 /* Base in Resources */,
 				A9657E322CD44D3500ED9945 /* Base in Resources */,
 			);
@@ -781,6 +794,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C59D74A2CF2D6A3005A1CDD /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6C59D74C2CF2D6A3005A1CDD /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		6C59D74E2CF2D6A3005A1CDD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A9657E1F2CD44D3400ED9945 /* Project object */;
 }
