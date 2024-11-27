@@ -36,6 +36,13 @@
 		A9657E422CD44D3600ED9945 /* EATARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E412CD44D3600ED9945 /* EATARTests.swift */; };
 		A9657E4C2CD44D3700ED9945 /* EATARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */; };
 		A9657E4E2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */; };
+		D76D60172CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D60132CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift */; };
+		D76D60182CF6BA8A00A5FC0A /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D60152CF6BA8A00A5FC0A /* HomeScreenViewController.swift */; };
+		D76D60192CF6BA8A00A5FC0A /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D60142CF6BA8A00A5FC0A /* HomeScreenView.swift */; };
+		D76D601D2CF6BA9400A5FC0A /* MyExperienceScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D601B2CF6BA9400A5FC0A /* MyExperienceScreenViewController.swift */; };
+		D76D601E2CF6BA9400A5FC0A /* MyExperienceScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D601A2CF6BA9400A5FC0A /* MyExperienceScreenView.swift */; };
+		D76D60212CF6BAA000A5FC0A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D601F2CF6BAA000A5FC0A /* MenuView.swift */; };
+		D76D60232CF6BAC800A5FC0A /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D60222CF6BAC800A5FC0A /* Experience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +97,13 @@
 		B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D114D38FAB85FD087E78EB37 /* Pods-EATARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATARTests.release.xcconfig"; path = "Target Support Files/Pods-EATARTests/Pods-EATARTests.release.xcconfig"; sourceTree = "<group>"; };
+		D76D60132CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
+		D76D60142CF6BA8A00A5FC0A /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		D76D60152CF6BA8A00A5FC0A /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		D76D601A2CF6BA9400A5FC0A /* MyExperienceScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExperienceScreenView.swift; sourceTree = "<group>"; };
+		D76D601B2CF6BA9400A5FC0A /* MyExperienceScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExperienceScreenViewController.swift; sourceTree = "<group>"; };
+		D76D601F2CF6BAA000A5FC0A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		D76D60222CF6BAC800A5FC0A /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		DF1F5E7C8934A6CD423BB718 /* Pods-EATAR-EATARUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR-EATARUITests.debug.xcconfig"; path = "Target Support Files/Pods-EATAR-EATARUITests/Pods-EATAR-EATARUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6129BE2B0E243EBFB1B0C70 /* Pods-EATARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATARTests.debug.xcconfig"; path = "Target Support Files/Pods-EATARTests/Pods-EATARTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				16CF64A62CF685E300CD4AC0 /* Review.swift */,
+				D76D60222CF6BAC800A5FC0A /* Experience.swift */,
 				16CF64A12CF6850F00CD4AC0 /* DiningPost.swift */,
 			);
 			path = Models;
@@ -230,11 +245,14 @@
 				6C59D7502CF2ED60005A1CDD /* GoogleService-Info.plist */,
 				6CA4FA482CDB5A120085FDCD /* Auth */,
 				16CF64972CF67DEF00CD4AC0 /* Post&Review */,
+				D76D60162CF6BA8A00A5FC0A /* Home Screen */,
+				D76D601C2CF6BA9400A5FC0A /* My Experience Screen */,
+				D76D60202CF6BAA000A5FC0A /* Side Menu */,
 				A9657E5A2CD4526C00ED9945 /* Profile */,
 				A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */,
 				A9657E2C2CD44D3500ED9945 /* SceneDelegate.swift */,
-				A9657E2E2CD44D3500ED9945 /* ViewController.swift */,
 				A9657E302CD44D3500ED9945 /* Main.storyboard */,
+				A9657E2E2CD44D3500ED9945 /* ViewController.swift */,
 				A9657E332CD44D3600ED9945 /* Assets.xcassets */,
 				A9657E352CD44D3600ED9945 /* LaunchScreen.storyboard */,
 				A9657E382CD44D3600ED9945 /* Info.plist */,
@@ -266,6 +284,33 @@
 				A949F15B2CD855D900E49EEC /* ProfileEdition.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		D76D60162CF6BA8A00A5FC0A /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D76D60132CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift */,
+				D76D60142CF6BA8A00A5FC0A /* HomeScreenView.swift */,
+				D76D60152CF6BA8A00A5FC0A /* HomeScreenViewController.swift */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		D76D601C2CF6BA9400A5FC0A /* My Experience Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D76D601A2CF6BA9400A5FC0A /* MyExperienceScreenView.swift */,
+				D76D601B2CF6BA9400A5FC0A /* MyExperienceScreenViewController.swift */,
+			);
+			path = "My Experience Screen";
+			sourceTree = "<group>";
+		};
+		D76D60202CF6BAA000A5FC0A /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D76D601F2CF6BAA000A5FC0A /* MenuView.swift */,
+			);
+			path = "Side Menu";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -515,6 +560,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
+				D76D60172CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift in Sources */,
+				D76D60182CF6BA8A00A5FC0A /* HomeScreenViewController.swift in Sources */,
+				D76D60232CF6BAC800A5FC0A /* Experience.swift in Sources */,
+				D76D60192CF6BA8A00A5FC0A /* HomeScreenView.swift in Sources */,
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
 				16CF64A52CF6855100CD4AC0 /* PostManager.swift in Sources */,
 				16CF649F2CF67F2200CD4AC0 /* ReviewView.swift in Sources */,
@@ -528,7 +577,10 @@
 				16CF64AB2CF6872500CD4AC0 /* ReviewViewController.swift in Sources */,
 				16CF64992CF67E1100CD4AC0 /* CreatePostView.swift in Sources */,
 				16CF649D2CF67EFD00CD4AC0 /* EditPostView.swift in Sources */,
+				D76D60212CF6BAA000A5FC0A /* MenuView.swift in Sources */,
 				A9657E2D2CD44D3500ED9945 /* SceneDelegate.swift in Sources */,
+				D76D601D2CF6BA9400A5FC0A /* MyExperienceScreenViewController.swift in Sources */,
+				D76D601E2CF6BA9400A5FC0A /* MyExperienceScreenView.swift in Sources */,
 				A949F15C2CD855D900E49EEC /* ProfileEdition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

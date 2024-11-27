@@ -44,6 +44,9 @@ class SignInViewController: UIViewController {
 
             // Fetch hasProfile field after sign-in
             self.fetchUserProfile(email: email)
+            let homeScreenVC = HomeScreenViewController()
+            // Pop HomeScreen (hardcoded posts, not connected to the database yet)
+            self.navigationController?.pushViewController(homeScreenVC, animated: true)
         }
     }
 

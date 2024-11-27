@@ -93,7 +93,7 @@
 /* Begin PBXFileReference section */
 		042BC195CB07EFE44AEB0DCF076B0F42 /* URLSessionConfiguration+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLSessionConfiguration+Alamofire.swift"; path = "Source/Extensions/URLSessionConfiguration+Alamofire.swift"; sourceTree = "<group>"; };
 		06D4995A456E769EF4A4410F288C1890 /* ServerTrustEvaluation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustEvaluation.swift; path = Source/Features/ServerTrustEvaluation.swift; sourceTree = "<group>"; };
-		085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire-Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Alamofire-Alamofire"; path = Alamofire.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alamofire.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1A6F1544AC8493ECB75A5C715C926E /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/Extensions/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		0C9BEBB0C8820ED4FD4A37826E585278 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/Extensions/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		15D872F8D68434DEBC71977DE878CB0D /* Pods-EATARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EATARTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		2D3E9ADBE7F82686A36178358F7481D5 /* Pods-EATAR-EATARUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EATAR-EATARUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		31CC9AB01177DEADFFB6C43EB9F89860 /* WebSocketRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketRequest.swift; path = Source/Core/WebSocketRequest.swift; sourceTree = "<group>"; };
 		31D8A4FCD332DDC6CA73052D268807CC /* Pods-EATAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EATAR.debug.xcconfig"; sourceTree = "<group>"; };
-		3754AB564AA0271FBA3EF4C9CADE6F27 /* Pods-EATAR-EATARUITests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-EATAR-EATARUITests"; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3754AB564AA0271FBA3EF4C9CADE6F27 /* libPods-EATAR-EATARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3834B5F3F47A4BCE86E42F0359187D08 /* Pods-EATAR-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EATAR-resources.sh"; sourceTree = "<group>"; };
 		4048001A145C8AD31BF3ACE235FB3B1E /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/Core/ParameterEncoding.swift; sourceTree = "<group>"; };
 		4ABA405A62C4B252E81F8E60A4F30057 /* Pods-EATAR-EATARUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EATAR-EATARUITests-resources.sh"; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		5A75CB804414AE3C59614A40F211657A /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		5CBAB1CB6E37F2569E3BFD95041FBC52 /* Pods-EATAR-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EATAR-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5D03EE798765035CD51C4978D760F49D /* Pods-EATAR-EATARUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EATAR-EATARUITests-umbrella.h"; sourceTree = "<group>"; };
-		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = Alamofire; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		68ABCF16F911F81C922B13042A6D2582 /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Features/Combine.swift; sourceTree = "<group>"; };
 		6D035971A6EF7C133E83DCCD3CA8303C /* Pods-EATAR-EATARUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EATAR-EATARUITests.modulemap"; sourceTree = "<group>"; };
 		6DE1362860FDB241AD20CC714A5BCE1F /* HTTPMethod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/Core/HTTPMethod.swift; sourceTree = "<group>"; };
@@ -139,10 +139,10 @@
 		97071855E60A04A11A86AC2760D19F8C /* Pods-EATAR-EATARUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EATAR-EATARUITests-dummy.m"; sourceTree = "<group>"; };
 		97EADB4DCE23FB2E87D5A25CD78FB568 /* AuthenticationInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationInterceptor.swift; path = Source/Features/AuthenticationInterceptor.swift; sourceTree = "<group>"; };
 		987E2A9FAE89EA598F5058AB5956415D /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Source/Core/Session.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F18B6ABEE545D89F1BB3A8AE98C0529 /* RequestTaskMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTaskMap.swift; path = Source/Core/RequestTaskMap.swift; sourceTree = "<group>"; };
 		A1843A17A27F48E3390B907410E35EF1 /* ResourceBundle-Alamofire-Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Alamofire-Alamofire-Info.plist"; sourceTree = "<group>"; };
-		ABC63F2A99BFCE8B1042954B077783C3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Source/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		ABC63F2A99BFCE8B1042954B077783C3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Source/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B2F4A9BD86684DBD56F42372CB516C1E /* Result+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Result+Alamofire.swift"; path = "Source/Extensions/Result+Alamofire.swift"; sourceTree = "<group>"; };
 		C2A4EA57C8C6AAF8782AF2B646DBC06C /* MultipartUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartUpload.swift; path = Source/Features/MultipartUpload.swift; sourceTree = "<group>"; };
 		C79877FCA02DB4995EA70C9EC0245C6B /* Pods-EATARTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EATARTests-dummy.m"; sourceTree = "<group>"; };
@@ -160,8 +160,8 @@
 		E85D9AAEDF1C14E634C21430A0C7A346 /* Alamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.release.xcconfig; sourceTree = "<group>"; };
 		E92B518917D3BBC42552C92936C9437F /* Pods-EATAR-EATARUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EATAR-EATARUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC71760518CA8EDB7DAF8450A22E3A18 /* Pods-EATARTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EATARTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		ECE3AC0E778C251897E3203E321F923C /* Pods-EATARTests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-EATARTests"; path = "libPods-EATARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F076724650C46550D104DAFCBD3D4D64 /* Pods-EATAR */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-EATAR"; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE3AC0E778C251897E3203E321F923C /* libPods-EATARTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F076724650C46550D104DAFCBD3D4D64 /* libPods-EATAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09CC362C862EAC18CA8C23DF18821D6 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/Core/SessionDelegate.swift; sourceTree = "<group>"; };
 		F5395B3DF7ACC5870050646AFFD9E664 /* RequestCompression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestCompression.swift; path = Source/Features/RequestCompression.swift; sourceTree = "<group>"; };
 		F729FA3F81E81B1BE2B6EBDB137E5501 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Core/Response.swift; sourceTree = "<group>"; };
@@ -272,7 +272,6 @@
 				3A8858F49A9B04712549D813542505AA /* Resources */,
 				109E140BC48AC6D6380364EE2029880D /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -311,11 +310,11 @@
 		7AA4DA19B2FB75A137CFBA16BD358928 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
-				085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire-Alamofire */,
-				F076724650C46550D104DAFCBD3D4D64 /* Pods-EATAR */,
-				3754AB564AA0271FBA3EF4C9CADE6F27 /* Pods-EATAR-EATARUITests */,
-				ECE3AC0E778C251897E3203E321F923C /* Pods-EATARTests */,
+				5D797E9A5C5782CE845840781FA1CC81 /* libAlamofire.a */,
+				085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire.bundle */,
+				F076724650C46550D104DAFCBD3D4D64 /* libPods-EATAR.a */,
+				3754AB564AA0271FBA3EF4C9CADE6F27 /* libPods-EATAR-EATARUITests.a */,
+				ECE3AC0E778C251897E3203E321F923C /* libPods-EATARTests.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,7 +428,7 @@
 			);
 			name = "Pods-EATARTests";
 			productName = "Pods-EATARTests";
-			productReference = ECE3AC0E778C251897E3203E321F923C /* Pods-EATARTests */;
+			productReference = ECE3AC0E778C251897E3203E321F923C /* libPods-EATARTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		976126A1CE06DC6E162563800E1BDF14 /* Alamofire-Alamofire */ = {
@@ -446,7 +445,7 @@
 			);
 			name = "Alamofire-Alamofire";
 			productName = Alamofire;
-			productReference = 085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire-Alamofire */;
+			productReference = 085DBCE7DD98588B2ED103B1C1F36026 /* Alamofire.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		CEDC404FCCE2B042A97CADBB3D8DA3C7 /* Pods-EATAR-EATARUITests */ = {
@@ -464,7 +463,7 @@
 			);
 			name = "Pods-EATAR-EATARUITests";
 			productName = "Pods-EATAR-EATARUITests";
-			productReference = 3754AB564AA0271FBA3EF4C9CADE6F27 /* Pods-EATAR-EATARUITests */;
+			productReference = 3754AB564AA0271FBA3EF4C9CADE6F27 /* libPods-EATAR-EATARUITests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */ = {
@@ -483,7 +482,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */;
+			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* libAlamofire.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		F8C14C5B44323474F3F430C35C174020 /* Pods-EATAR */ = {
@@ -501,7 +500,7 @@
 			);
 			name = "Pods-EATAR";
 			productName = "Pods-EATAR";
-			productReference = F076724650C46550D104DAFCBD3D4D64 /* Pods-EATAR */;
+			productReference = F076724650C46550D104DAFCBD3D4D64 /* libPods-EATAR.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -522,7 +521,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
 			productRefGroup = 7AA4DA19B2FB75A137CFBA16BD358928 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
