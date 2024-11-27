@@ -67,16 +67,25 @@ class SignupView: UIView {
         textField.layer.cornerRadius = 15
         textField.clipsToBounds = true
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Add padding with fixed height
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10)) // Fixed height
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+
         return textField
     }
     
     func setupTextFieldName(){
         textfieldName = createCustomTextField(placeholder: "  Username")
+        textfieldName.autocapitalizationType = .none
         self.addSubview(textfieldName)
     }
     
     func setupTextFieldEmail(){
         textfieldEmail = createCustomTextField(placeholder: "  Email")
+        textfieldEmail.autocapitalizationType = .none
+        textfieldEmail.keyboardType = .emailAddress
         self.addSubview(textfieldEmail)
     }
     
@@ -110,11 +119,10 @@ class SignupView: UIView {
             labelSentence.topAnchor.constraint(equalTo: labelSignUp.bottomAnchor, constant: 5),
             labelSentence.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            // 調整照相機圖標的大小
             photoIconImageView.topAnchor.constraint(equalTo: labelSentence.bottomAnchor, constant: 47),
             photoIconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            photoIconImageView.widthAnchor.constraint(equalToConstant: 90), // 調整寬度
-            photoIconImageView.heightAnchor.constraint(equalToConstant: 90), // 調整高度
+            photoIconImageView.widthAnchor.constraint(equalToConstant: 90),
+            photoIconImageView.heightAnchor.constraint(equalToConstant: 90),
             
             textfieldName.topAnchor.constraint(equalTo: photoIconImageView.bottomAnchor, constant: 26),
             textfieldName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),

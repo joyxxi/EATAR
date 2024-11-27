@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     @objc func onButtonSignupTapped(){
-        let signupScreen = SignUpViewController()
+        let signupScreen = SignupViewController()
         navigationController?.pushViewController(signupScreen, animated: true)
     }
 

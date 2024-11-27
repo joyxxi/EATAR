@@ -79,6 +79,7 @@ class SignInView: UIView {
     
     func setupTextFieldUserName(){
         textFieldUsername = UITextField()
+        textFieldUsername.autocapitalizationType = .none
         textFieldUsername.placeholder = " Username"
         textFieldUsername.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
         textFieldUsername.layer.cornerRadius = 15
