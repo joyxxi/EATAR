@@ -10,8 +10,8 @@ import UIKit
 class MyExperienceScreenViewController: UIViewController {
 
     let myExperienceScreen = MyExperienceScreenView()
-    var myPosts = [Experience]()
-    var joinedExperiences = [Experience]()
+    var myPosts = [DiningPost]()
+    var joinedExperiences = [DiningPost]()
     var isMyPostExpanded = true
     var isJoinedExperienceExpanded = true
     var myPostsHeightConstraint: NSLayoutConstraint!
@@ -51,16 +51,18 @@ class MyExperienceScreenViewController: UIViewController {
         myExperienceScreen.tableViewJoinedExperience.delegate = self
         myExperienceScreen.tableViewJoinedExperience.separatorStyle = .none
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
         //Add Sample Data
         myPosts.append(
-            Experience(restaurant: "Shang Cafe", cuisine: "Chinese", people: "1/4", time: "10/13/24 Lunch", location: "xx St, San Jose, CA", postedBy: "User1", postedTime: "10/11/24"))
+            DiningPost(id: "1", restaurantName: "Shang Cafe", cuisine: "Chinese", maxPeople: 4, currentPeople: 1, dateTime:dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, San Jose, CA", zipCode: "94089", note: "", creatorId: "1", participants: ["1"], status: .active, createdAt:dateFormatter.date(from: "10/11/2024 11:00")!))
         myPosts.append(
-            Experience(restaurant: "Dish & Dash", cuisine: "Mediterran", people: "2/4", time: "10/15/24 Dinner", location: "xx St, Sunnyvale, CA", postedBy: "User2", postedTime: "10/13/24"))
+            DiningPost(id: "2", restaurantName:"Dish & Dash", cuisine: "Mediterran", maxPeople: 4, currentPeople: 2, dateTime: dateFormatter.date(from: "10/15/2024 12:30")!, location: "xx St, Sunnyvale, CA", zipCode: "94091", note: "", creatorId: "2", participants: ["1", "2"], status: .active, createdAt: dateFormatter.date(from: "10/12/2024 11:00")!))
         
         joinedExperiences.append(
-            Experience(restaurant: "Pacific Catch", cuisine: "American", people: "1/2", time: "10/16/24 Lunch", location: "xx St, Santa Clara, CA", postedBy: "User3", postedTime: "10/14/24"))
+            DiningPost(id: "3", restaurantName:"Pacific Catch", cuisine: "American", maxPeople: 2, currentPeople: 1, dateTime: dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "3", participants: ["3"], status: .active, createdAt: dateFormatter.date(from: "10/14/2024 11:00")!))
         joinedExperiences.append(
-            Experience(restaurant: "Sweetgreen", cuisine: "American", people: "1/3", time: "10/17/24 Lunch", location: "xx St, Santa Clara, CA", postedBy: "User4", postedTime: "10/15/24"))
+            DiningPost(id: "4", restaurantName:"Sweetgreen", cuisine: "American", maxPeople: 3, currentPeople: 1, dateTime: dateFormatter.date(from: "10/17/2024 12:15")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "4", participants: ["4"], status: .active, createdAt: dateFormatter.date(from: "10/15/2024 11:00")!))
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.horizontal.3"),
@@ -68,6 +70,8 @@ class MyExperienceScreenViewController: UIViewController {
             target: self,
             action: #selector(onMenuBarButtonTapped)
         )
+        navigationItem.leftBarButtonItem?.tintColor = .brown
+
         
         setupMenuItems()
         
@@ -200,99 +204,63 @@ extension MyExperienceScreenViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let experiences = tableView == myExperienceScreen.tableViewMyPosts ?
+        let post = tableView == myExperienceScreen.tableViewMyPosts ?
                    myPosts[indexPath.row] :
                    joinedExperiences[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "experiences", for: indexPath) as! ExperienceTableViewCell
-        if let uwRestaurant = experiences.restaurant{
-            cell.labelRestaurant.text = "Restaurant: \(uwRestaurant)"
-        }
-        if let uwCuisine = experiences.cuisine{
-            cell.labelCuisine.text = "Cuisine: \(uwCuisine)"
-        }
-        if let uwPeople = experiences.people{
-            cell.labelPeople.text = "People: \(uwPeople)"
-        }
-        if let uwTime = experiences.time{
-            cell.labelTime.text = "Time: \(uwTime)"
-        }
-        if let uwLocation = experiences.location{
-            cell.labelLocation.text = "Location: \(uwLocation)"
-        }
-        if let uwPostedBy = experiences.postedBy{
-            cell.labelPostedBy.text = "Posted By: \(uwPostedBy)"
-        }
-        if let uwPostedTime = experiences.postedTime{
-            cell.labelPostedTime.text = "Posted Time: \(uwPostedTime)"
-        }
+        cell.labelRestaurant.text = "Restaurant: \(post.restaurantName)"
+        cell.labelCuisine.text = "Cuisine: \(post.cuisine)"
+        cell.labelPeople.text = "People: \(post.currentPeople) / \(post.maxPeople)"
+        cell.labelTime.text = "Time: \(post.dateTime)"
+        cell.labelLocation.text = "Location: \(post.location)"
+        cell.labelPostedBy.text = "Posted By: \(post.creatorId)"
+        cell.labelPostedTime.text = "Posted Time: \(post.createdAt)"
         
-        let buttonOptions = UIButton(type: .system)
-        buttonOptions.translatesAutoresizingMaskIntoConstraints = false
-        buttonOptions.showsMenuAsPrimaryAction = true
         
-        // Configure button size explicitly
-        let buttonSize: CGFloat = 30
-        NSLayoutConstraint.activate([
-            buttonOptions.widthAnchor.constraint(equalToConstant: buttonSize),
-            buttonOptions.heightAnchor.constraint(equalToConstant: buttonSize)
-        ])
-         
         if tableView == myExperienceScreen.tableViewMyPosts {
             // For My Posts - Show Edit and Delete options
             let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
-            buttonOptions.setImage(UIImage(systemName: "ellipsis.circle", withConfiguration: config), for: .normal)
-            buttonOptions.menu = UIMenu(title: "Options", children: [
+            cell.buttonOptions.setImage(UIImage(systemName: "ellipsis.circle", withConfiguration: config), for: .normal)
+            cell.buttonOptions.tintColor = .brown
+            cell.buttonOptions.menu = UIMenu(title: "Options", children: [
                 UIAction(title: "Edit", image: UIImage(systemName: "pencil"), handler: { [weak self] _ in
-                    self?.handleEdit(experience: experiences)
+                    self?.handleEdit(experience: post)
                 }),
                 UIAction(title: "Delete",
                         image: UIImage(systemName: "trash"),
                         attributes: .destructive,
                         handler: { [weak self] _ in
-                    self?.handleDelete(experience: experiences)
+                    self?.handleDelete(experience: post)
                 })
             ])
         } else {
             // For Joined Experiences - Show Review option
             let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
-            buttonOptions.setImage(UIImage(systemName: "star.circle", withConfiguration: config), for: .normal)
-            buttonOptions.menu = UIMenu(title: "Options", children: [
+            cell.buttonOptions.setImage(UIImage(systemName: "star.circle", withConfiguration: config), for: .normal)
+            cell.buttonOptions.tintColor = .brown
+            cell.buttonOptions.menu = UIMenu(title: "Options", children: [
                 UIAction(title: "Review", image: UIImage(systemName: "star"), handler: { [weak self] _ in
-                    self?.handleReview(experience: experiences)
+                    self?.handleReview(experience: post)
                 })
             ])
         }
-        
-        // Create a container view for the button to help with alignment
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
-        containerView.addSubview(buttonOptions)
-        
-        // Center the button in its container
-        NSLayoutConstraint.activate([
-            buttonOptions.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            buttonOptions.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
-        ])
-        
-        cell.accessoryView = containerView
-        
-        // Ensure the button is vertically centered with the first line (restaurant name)
-        containerView.frame.origin.y = cell.labelRestaurant.frame.origin.y
+        cell.accessoryView = cell.buttonOptions
         
         return cell
 
      }
      
      // MARK: - Helper Methods for Menu Actions
-     func handleEdit(experience: Experience) {
+    func handleEdit(experience: DiningPost) {
 
      }
      
-     func handleDelete(experience: Experience) {
+    func handleDelete(experience: DiningPost) {
 
      }
      
-     func handleReview(experience: Experience) {
+    func handleReview(experience: DiningPost) {
          
      }
  

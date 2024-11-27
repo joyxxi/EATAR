@@ -39,12 +39,13 @@ class HomeScreenView: UIView {
     func setupContentElements(){
         labelUpcomingExperiences = UILabel()
         labelUpcomingExperiences.text = "Upcoming Experiences"
-        labelUpcomingExperiences.font = .boldSystemFont(ofSize: 18)
+        labelUpcomingExperiences.font = .boldSystemFont(ofSize: 20)
         labelUpcomingExperiences.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelUpcomingExperiences)
         
         buttonExpand = UIButton(type: .system)
         buttonExpand.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        buttonExpand.tintColor = .brown
         buttonExpand.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(buttonExpand)
         
@@ -55,7 +56,7 @@ class HomeScreenView: UIView {
         
         labelRecommendedExperiences = UILabel()
         labelRecommendedExperiences.text = "Recommended For You"
-        labelRecommendedExperiences.font = .boldSystemFont(ofSize: 18)
+        labelRecommendedExperiences.font = .boldSystemFont(ofSize: 20)
         labelRecommendedExperiences.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelRecommendedExperiences)
         

@@ -43,12 +43,13 @@ class MyExperienceScreenView: UIView {
     func setupContentElements(){
         labelMyPosts = UILabel()
         labelMyPosts.text = "My Posts"
-        labelMyPosts.font = .boldSystemFont(ofSize: 18)
+        labelMyPosts.font = .boldSystemFont(ofSize: 20)
         labelMyPosts.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelMyPosts)
         
         buttonExpand1 = UIButton(type: .system)
         buttonExpand1.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        buttonExpand1.tintColor = .brown
         buttonExpand1.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(buttonExpand1)
         
@@ -59,12 +60,13 @@ class MyExperienceScreenView: UIView {
         
         labelJoinedExperience = UILabel()
         labelJoinedExperience.text = "Experiences I Joined"
-        labelJoinedExperience.font = .boldSystemFont(ofSize: 18)
+        labelJoinedExperience.font = .boldSystemFont(ofSize: 20)
         labelJoinedExperience.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelJoinedExperience)
         
         buttonExpand2 = UIButton(type: .system)
         buttonExpand2.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        buttonExpand2.tintColor = .brown
         buttonExpand2.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(buttonExpand2)
         

@@ -10,6 +10,7 @@ import UIKit
 class ExperienceTableViewCell: UITableViewCell {
     
     var wrapperCellView: UIView!
+    var buttonOptions: UIButton!
     var labelRestaurant: UILabel!
     var labelCuisine: UILabel!
     var labelPeople: UILabel!
@@ -22,6 +23,7 @@ class ExperienceTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupWrapperCellView()
+        setupButtonOptions()
         setupLabelRestaurant()
         setupLabelCuisine()
         setupLabelPeople()
@@ -47,9 +49,17 @@ class ExperienceTableViewCell: UITableViewCell {
         self.addSubview(wrapperCellView)
     }
     
+    func setupButtonOptions() {
+        buttonOptions = UIButton(type: .system)
+        buttonOptions.translatesAutoresizingMaskIntoConstraints = false
+        buttonOptions.isUserInteractionEnabled = true
+        buttonOptions.showsMenuAsPrimaryAction = true
+        self.addSubview(buttonOptions)
+    }
+    
     func setupLabelRestaurant(){
         labelRestaurant = UILabel()
-        labelRestaurant.font = UIFont.boldSystemFont(ofSize: 24)
+        labelRestaurant.font = UIFont.boldSystemFont(ofSize: 18)
         labelRestaurant.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelRestaurant)
     }
@@ -102,6 +112,11 @@ class ExperienceTableViewCell: UITableViewCell {
             wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
+            
+            buttonOptions.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            buttonOptions.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            buttonOptions.widthAnchor.constraint(equalToConstant: 30),
+            buttonOptions.heightAnchor.constraint(equalToConstant: 30),
             
             labelRestaurant.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 8),
             labelRestaurant.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 10),

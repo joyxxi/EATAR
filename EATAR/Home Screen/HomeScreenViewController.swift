@@ -11,8 +11,8 @@ class HomeScreenViewController: UIViewController {
 
     
     let homeScreen = HomeScreenView()
-    var upcomingExperiences = [Experience]()
-    var recommendedExperiences = [Experience]()
+    var upcomingExperiences = [DiningPost]()
+    var recommendedExperiences = [DiningPost]()
     var isUpcomingExpanded = true
     var upcomingExperiencesHeightConstraint: NSLayoutConstraint!
     var isSlideInMenuPresented = false
@@ -50,22 +50,28 @@ class HomeScreenViewController: UIViewController {
         homeScreen.tableViewRecommendedExperiences.delegate = self
         homeScreen.tableViewRecommendedExperiences.separatorStyle = .none
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        
         //Add Sample Data
         upcomingExperiences.append(
-            Experience(restaurant: "Shang Cafe", cuisine: "Chinese", people: "1/4", time: "10/13/24 Lunch", location: "xx St, San Jose, CA", postedBy: "User1", postedTime: "10/11/24"))
+            DiningPost(id: "1", restaurantName: "Shang Cafe", cuisine: "Chinese", maxPeople: 4, currentPeople: 1, dateTime:dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, San Jose, CA", zipCode: "94089", note: "", creatorId: "1", participants: ["1"], status: .active, createdAt:dateFormatter.date(from: "10/11/2024 11:00")!))
         upcomingExperiences.append(
-            Experience(restaurant: "Dish & Dash", cuisine: "Mediterran", people: "2/4", time: "10/15/24 Dinner", location: "xx St, Sunnyvale, CA", postedBy: "User2", postedTime: "10/13/24"))
+            DiningPost(id: "2", restaurantName:"Dish & Dash", cuisine: "Mediterran", maxPeople: 4, currentPeople: 2, dateTime: dateFormatter.date(from: "10/15/2024 12:30")!, location: "xx St, Sunnyvale, CA", zipCode: "94091", note: "", creatorId: "2", participants: ["1", "2"], status: .active, createdAt: dateFormatter.date(from: "10/12/2024 11:00")!))
         
         recommendedExperiences.append(
-            Experience(restaurant: "Pacific Catch", cuisine: "American", people: "1/2", time: "10/16/24 Lunch", location: "xx St, Santa Clara, CA", postedBy: "User3", postedTime: "10/14/24"))
+            DiningPost(id: "3", restaurantName:"Pacific Catch", cuisine: "American", maxPeople: 2, currentPeople: 1, dateTime: dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "3", participants: ["3"], status: .active, createdAt: dateFormatter.date(from: "10/14/2024 11:00")!))
         recommendedExperiences.append(
-            Experience(restaurant: "Sweetgreen", cuisine: "American", people: "1/3", time: "10/17/24 Lunch", location: "xx St, Santa Clara, CA", postedBy: "User4", postedTime: "10/15/24"))
+            DiningPost(id: "4", restaurantName:"Sweetgreen", cuisine: "American", maxPeople: 3, currentPeople: 1, dateTime: dateFormatter.date(from: "10/17/2024 12:15")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "4", participants: ["4"], status: .active, createdAt: dateFormatter.date(from: "10/15/2024 11:00")!))
+
         
         //Set up the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add, target: self,
             action: #selector(onAddBarButtonTapped)
         )
+        navigationItem.rightBarButtonItem?.tintColor = .brown
+
         
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -74,6 +80,8 @@ class HomeScreenViewController: UIViewController {
             target: self,
             action: #selector(onMenuBarButtonTapped)
         )
+        navigationItem.leftBarButtonItem?.tintColor = .brown
+
         
         setupMenuItems()
         
@@ -184,32 +192,19 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let experiences = tableView == homeScreen.tableViewUpcomingExperiences ?
+        let post = tableView == homeScreen.tableViewUpcomingExperiences ?
                    upcomingExperiences[indexPath.row] :
                    recommendedExperiences[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "experiences", for: indexPath) as! ExperienceTableViewCell
-        if let uwRestaurant = experiences.restaurant{
-            cell.labelRestaurant.text = "Restaurant: \(uwRestaurant)"
-        }
-        if let uwCuisine = experiences.cuisine{
-            cell.labelCuisine.text = "Cuisine: \(uwCuisine)"
-        }
-        if let uwPeople = experiences.people{
-            cell.labelPeople.text = "People: \(uwPeople)"
-        }
-        if let uwTime = experiences.time{
-            cell.labelTime.text = "Time: \(uwTime)"
-        }
-        if let uwLocation = experiences.location{
-            cell.labelLocation.text = "Location: \(uwLocation)"
-        }
-        if let uwPostedBy = experiences.postedBy{
-            cell.labelPostedBy.text = "Posted By: \(uwPostedBy)"
-        }
-        if let uwPostedTime = experiences.postedTime{
-            cell.labelPostedTime.text = "Posted Time: \(uwPostedTime)"
-        }
+        cell.labelRestaurant.text = "Restaurant: \(post.restaurantName)"
+        cell.labelCuisine.text = "Cuisine: \(post.cuisine)"
+        cell.labelPeople.text = "People: \(post.currentPeople) / \(post.maxPeople)"
+        cell.labelTime.text = "Time: \(post.dateTime)"
+        cell.labelLocation.text = "Location: \(post.location)"
+        cell.labelPostedBy.text = "Posted By: \(post.creatorId)"
+        cell.labelPostedTime.text = "Posted Time: \(post.createdAt)"
+
         return cell
     }
     
