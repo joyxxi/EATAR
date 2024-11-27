@@ -48,7 +48,10 @@ class ProfileEdition: UIView {
     
     func setupSaveButton() {
         saveButton = UIButton(type: .system)
+        saveButton.backgroundColor = .systemBrown
+        saveButton.setTitleColor(.white, for: .normal)
         saveButton.setTitle("Save", for: .normal)
+        saveButton.layer.cornerRadius = 25
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(saveButton)
     }

@@ -35,25 +35,30 @@ class ProfileDetail: UIView {
         
     }
     func setupEditButton() {
-        editButton = UIButton()
+        editButton = UIButton(type: .system)
         editButton.setTitle("Edit Profile", for: .normal)
+        editButton.backgroundColor = .systemBrown
+        editButton.setTitleColor(.white, for: .normal)
         editButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        editButton.layer.cornerRadius = 25
         editButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(editButton)
         
         // add rounded corners and border
-        editButton.layer.cornerRadius = 10
-        editButton.layer.borderWidth = 2
-        editButton.layer.borderColor = UIColor.black.cgColor
+//        editButton.layer.cornerRadius = 10
+//        editButton.layer.borderWidth = 2
+//        editButton.layer.borderColor = UIColor.black.cgColor
         
         // add shadow
-        editButton.layer.shadowColor = UIColor.black.cgColor
-        editButton.layer.shadowOffset = CGSize(width: 3, height: 3)
-        editButton.layer.shadowOpacity = 0.8
-        editButton.layer.shadowRadius = 4
+//        editButton.layer.shadowColor = UIColor.black.cgColor
+//        editButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+//        editButton.layer.shadowOpacity = 0.8
+//        editButton.layer.shadowRadius = 4
         
 
     }
+    
+    
     
     func setupBioLabel() {
         bioLabel = UILabel()

@@ -34,6 +34,11 @@
 		A9657E422CD44D3600ED9945 /* EATARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E412CD44D3600ED9945 /* EATARTests.swift */; };
 		A9657E4C2CD44D3700ED9945 /* EATARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */; };
 		A9657E4E2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */; };
+		A9864D052CDDC073004BADCE /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9864D022CDDC073004BADCE /* ExperienceTableViewCell.swift */; };
+		A9864D062CDDC073004BADCE /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9864D032CDDC073004BADCE /* HomeScreenViewController.swift */; };
+		A9864D072CDDC073004BADCE /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9864D012CDDC073004BADCE /* HomeScreenView.swift */; };
+		A9864D1A2CDDC20F004BADCE /* ProfileEditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9864D192CDDC20F004BADCE /* ProfileEditionViewController.swift */; };
+		A9864D1C2CDDC21A004BADCE /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9864D1B2CDDC21A004BADCE /* ProfileDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,11 @@
 		A9657E472CD44D3700ED9945 /* EATARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EATARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EATARUITests.swift; sourceTree = "<group>"; };
 		A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EATARUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9864D012CDDC073004BADCE /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		A9864D022CDDC073004BADCE /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
+		A9864D032CDDC073004BADCE /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		A9864D192CDDC20F004BADCE /* ProfileEditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditionViewController.swift; sourceTree = "<group>"; };
+		A9864D1B2CDDC21A004BADCE /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D114D38FAB85FD087E78EB37 /* Pods-EATARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATARTests.release.xcconfig"; path = "Target Support Files/Pods-EATARTests/Pods-EATARTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +235,7 @@
 		A9657E292CD44D3500ED9945 /* EATAR */ = {
 			isa = PBXGroup;
 			children = (
+				A9864D042CDDC073004BADCE /* Home Screen */,
 				1654D5402CDBF95800DEBBD7 /* Post&Review */,
 				6CA4FA482CDB5A120085FDCD /* Auth */,
 				A9657E5A2CD4526C00ED9945 /* Profile */,
@@ -259,10 +270,38 @@
 		A9657E5A2CD4526C00ED9945 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A949F1592CD855C900E49EEC /* ProfileDetail.swift */,
-				A949F15B2CD855D900E49EEC /* ProfileEdition.swift */,
+				A9864D092CDDC163004BADCE /* Controllers */,
+				A9864D082CDDC158004BADCE /* Views */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A9864D042CDDC073004BADCE /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				A9864D012CDDC073004BADCE /* HomeScreenView.swift */,
+				A9864D022CDDC073004BADCE /* ExperienceTableViewCell.swift */,
+				A9864D032CDDC073004BADCE /* HomeScreenViewController.swift */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		A9864D082CDDC158004BADCE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A949F15B2CD855D900E49EEC /* ProfileEdition.swift */,
+				A949F1592CD855C900E49EEC /* ProfileDetail.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9864D092CDDC163004BADCE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9864D192CDDC20F004BADCE /* ProfileEditionViewController.swift */,
+				A9864D1B2CDDC21A004BADCE /* ProfileDetailViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,13 +552,18 @@
 			files = (
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
+				A9864D1A2CDDC20F004BADCE /* ProfileEditionViewController.swift in Sources */,
 				A949F15A2CD855C900E49EEC /* ProfileDetail.swift in Sources */,
+				A9864D052CDDC073004BADCE /* ExperienceTableViewCell.swift in Sources */,
+				A9864D062CDDC073004BADCE /* HomeScreenViewController.swift in Sources */,
+				A9864D072CDDC073004BADCE /* HomeScreenView.swift in Sources */,
 				1654D5452CDBF95800DEBBD7 /* EditPostView.swift in Sources */,
 				1654D5462CDBF95800DEBBD7 /* PostDetailsView.swift in Sources */,
 				1654D5482CDBF95800DEBBD7 /* AppDelegate.swift in Sources */,
 				1654D5492CDBF95800DEBBD7 /* JoinMeView.swift in Sources */,
 				1654D54A2CDBF95800DEBBD7 /* RatingView.swift in Sources */,
 				1654D54B2CDBF95800DEBBD7 /* SceneDelegate.swift in Sources */,
+				A9864D1C2CDDC21A004BADCE /* ProfileDetailViewController.swift in Sources */,
 				1654D54C2CDBF95800DEBBD7 /* ReviewView.swift in Sources */,
 				1654D54D2CDBF95800DEBBD7 /* ViewController.swift in Sources */,
 				1654D54E2CDBF95800DEBBD7 /* CreatePostView.swift in Sources */,
