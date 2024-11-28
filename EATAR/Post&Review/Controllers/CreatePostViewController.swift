@@ -29,7 +29,22 @@ class CreatePostViewController: UIViewController {
         setupUI()
         setupActions()
         setupPickers()
+        
+    // Add cancel button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(cancelButtonTapped)
+        )
+        navigationItem.leftBarButtonItem?.tintColor = .brown
+
     }
+    
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true)
+    }
+
     
     // MARK: - Setup Methods
     private func setupUI() {
@@ -132,6 +147,20 @@ class CreatePostViewController: UIViewController {
         // Check location
         guard let location = createPostView.textFieldLocation.text, !location.isEmpty else {
             showAlert(message: "Please enter location")
+            return false
+        }
+        // Check zip code
+        guard let zipCode = createPostView.textFieldZipCode.text,
+                !zipCode.isEmpty else {
+            showAlert(message: "Please enter zip code")
+            return false
+        }
+            
+        // Validate zip code format
+        let zipCodeRegex = "^[0-9]{5}$"
+        let zipCodePredicate = NSPredicate(format: "SELF MATCHES %@", zipCodeRegex)
+        guard zipCodePredicate.evaluate(with: zipCode) else {
+            showAlert(message: "Please enter a valid 5-digit zip code")
             return false
         }
         

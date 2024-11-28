@@ -141,7 +141,9 @@ class HomeScreenViewController: UIViewController {
     }
     
     @objc func onAddBarButtonTapped(){
-        
+        let createPostVC = CreatePostViewController()
+        let navController = UINavigationController(rootViewController: createPostVC)
+        present(navController, animated: true)
     }
     
     @objc func onMenuBarButtonTapped(){
