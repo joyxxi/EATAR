@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class ProfileDetailViewController: UIViewController {
 
     let profileDetailScreen = ProfileDetail()
+    let db = Firestore.firestore()
     
     override func loadView() {
         view = profileDetailScreen
@@ -17,7 +20,13 @@ class ProfileDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        profileDetailScreen.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func editButtonTapped() {
+        let profileEditionVC = ProfileEditionViewController()
+        navigationController?.pushViewController(profileEditionVC, animated: true)
     }
 
 

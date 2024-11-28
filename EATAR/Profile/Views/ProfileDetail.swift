@@ -29,6 +29,9 @@ class ProfileDetail: UIView {
         setupLocationLabel()
         setupCuisinePreferenceLabel()
         setupFavoriteRestaurantLabel()
+        setupBioLabel()
+        setupEditButton()
+        
         
         initConstraints()
         
@@ -41,6 +44,8 @@ class ProfileDetail: UIView {
         editButton.setTitleColor(.white, for: .normal)
         editButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         editButton.layer.cornerRadius = 25
+        editButton.clipsToBounds = true
+        editButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(editButton)
         
@@ -62,51 +67,57 @@ class ProfileDetail: UIView {
     
     func setupBioLabel() {
         bioLabel = UILabel()
-        bioLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        bioLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         bioLabel.numberOfLines = 0
         bioLabel.lineBreakMode = .byWordWrapping
+        bioLabel.text = "Bio: "
         scrollView.addSubview(bioLabel)
     }
     
     func setupFavoriteRestaurantLabel() {
         favoriteRestaurantLabel = UILabel()
-        favoriteRestaurantLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        favoriteRestaurantLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         favoriteRestaurantLabel.translatesAutoresizingMaskIntoConstraints = false
         favoriteRestaurantLabel.numberOfLines = 0
         favoriteRestaurantLabel.lineBreakMode = .byWordWrapping
+        favoriteRestaurantLabel.text = "Favorite Restaurant: "
         scrollView.addSubview(favoriteRestaurantLabel)
     }
     
     func setupCuisinePreferenceLabel() {
         cuisinePreferenceLabel = UILabel()
-        cuisinePreferenceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        cuisinePreferenceLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         cuisinePreferenceLabel.translatesAutoresizingMaskIntoConstraints = false
         cuisinePreferenceLabel.numberOfLines = 0
         cuisinePreferenceLabel.lineBreakMode = .byWordWrapping
+        cuisinePreferenceLabel.text = "Cuisine Preferences: "
         scrollView.addSubview(cuisinePreferenceLabel)
     }
     
     func setupLocationLabel() {
         locationLabel = UILabel()
-        locationLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        locationLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.numberOfLines = 0
         locationLabel.lineBreakMode = .byWordWrapping
+        locationLabel.text = "Location: "
         scrollView.addSubview(locationLabel)
     }
     
     func setupGenderLabel() {
         genderLabel = UILabel()
-        genderLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        genderLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         genderLabel.translatesAutoresizingMaskIntoConstraints = false
+        genderLabel.text = "Gender: "
         scrollView.addSubview(genderLabel)
     }
     
     func setupNameLabel() {
         nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.text = "Name: "
         scrollView.addSubview(nameLabel)
     }
     
@@ -116,7 +127,7 @@ class ProfileDetail: UIView {
         profileImage.image = UIImage(systemName: "person.circle")
         profileImage.contentMode = .scaleAspectFit
         profileImage.clipsToBounds = true
-//        profileImage.layer.cornerRadius = 10
+        profileImage.layer.cornerRadius = 50
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(profileImage)
     }
@@ -138,6 +149,8 @@ class ProfileDetail: UIView {
             // profile image
             profileImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             profileImage.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            profileImage.widthAnchor.constraint(equalToConstant: 150),
+            profileImage.heightAnchor.constraint(equalToConstant: 150),
             
             // name label
             nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 32),

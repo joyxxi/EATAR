@@ -42,6 +42,7 @@ class ProfileEdition: UIView {
         setupBioLabel()
         setupBioTextView()
         setupSaveButton()
+    
         
         initConstraints()
     }
@@ -52,6 +53,9 @@ class ProfileEdition: UIView {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.setTitle("Save", for: .normal)
         saveButton.layer.cornerRadius = 25
+        saveButton.clipsToBounds = true
+        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        saveButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(saveButton)
     }
@@ -61,6 +65,8 @@ class ProfileEdition: UIView {
         bioTextView.isEditable = true
         bioTextView.isScrollEnabled = true
         bioTextView.layer.cornerRadius = 8
+        bioTextView.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
+        bioTextView.textColor = .systemBrown
         bioTextView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(bioTextView)
     }
@@ -68,7 +74,7 @@ class ProfileEdition: UIView {
     func setupBioLabel() {
         bioLabel = UILabel()
         bioLabel.text = "Bio"
-        bioLabel.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        bioLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         bioLabel.textColor = .gray
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(bioLabel)
@@ -86,13 +92,17 @@ class ProfileEdition: UIView {
         cuisineTextField = UITextField()
         cuisineTextField.borderStyle = .roundedRect
         cuisineTextField.translatesAutoresizingMaskIntoConstraints = false
+//        cuisineTextField.placeholder = "This is the cuisine"
+//        cuisineTextField.borderStyle = .roundedRect
+        cuisineTextField.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
+        cuisineTextField.textColor = .systemBrown
         scrollView.addSubview(cuisineTextField)
     }
     
     func setupCuisinePreferenceLabel() {
         cuisinePreferenceLabel = UILabel()
         cuisinePreferenceLabel.text = "Cuisine Preference"
-        cuisinePreferenceLabel.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        cuisinePreferenceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         cuisinePreferenceLabel.textColor = .gray
         cuisinePreferenceLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(cuisinePreferenceLabel)
@@ -102,13 +112,15 @@ class ProfileEdition: UIView {
         locationTextField = UITextField()
         locationTextField.borderStyle = .roundedRect
         locationTextField.translatesAutoresizingMaskIntoConstraints = false
+        locationTextField.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
+        locationTextField.textColor = .systemBrown
         scrollView.addSubview(locationTextField)
     }
     
     func setupLocationLabel() {
         locationLabel = UILabel()
         locationLabel.text = "Location"
-        locationLabel.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        locationLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         locationLabel.textColor = .gray
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(locationLabel)
@@ -117,11 +129,11 @@ class ProfileEdition: UIView {
     func setupGenderSelectButton() {
         genderSelectButton = UIButton(type: .system)
         genderSelectButton.setTitle("Select Gender", for: .normal)
-        genderSelectButton.setTitleColor(.black, for: .normal)
+        genderSelectButton.setTitleColor(.systemBrown, for: .normal)
         genderSelectButton.backgroundColor = .white
         genderSelectButton.layer.cornerRadius = 5
-        genderSelectButton.layer.borderWidth = 1
-        genderSelectButton.layer.borderColor = UIColor.lightGray.cgColor
+//        genderSelectButton.layer.borderWidth = 1
+//        genderSelectButton.layer.borderColor = UIColor.lightGray.cgColor
         genderSelectButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(genderSelectButton)
     }
@@ -129,7 +141,7 @@ class ProfileEdition: UIView {
     func setupGenderLabel() {
         genderLabel = UILabel()
         genderLabel.text = "Gender"
-        genderLabel.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        genderLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         genderLabel.textColor = .gray
         genderLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(genderLabel)
@@ -139,13 +151,15 @@ class ProfileEdition: UIView {
         nameTextField = UITextField()
         nameTextField.borderStyle = .roundedRect
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
+        nameTextField.textColor = .systemBrown
         scrollView.addSubview(nameTextField)
     }
     
     func setupNameLabel() {
         nameLabel = UILabel()
         nameLabel.text = "Name"
-        nameLabel.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameLabel.textColor = .gray
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(nameLabel)
@@ -154,7 +168,7 @@ class ProfileEdition: UIView {
     func setupEditProfileImageButton() {
         editProfileImageButton = UIButton(type: .system)
         editProfileImageButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-        //TODO: Set up the size of this button
+        editProfileImageButton.tintColor = .systemBrown
         editProfileImageButton.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(editProfileImageButton)
     }
@@ -162,9 +176,10 @@ class ProfileEdition: UIView {
     func setupProfileImage() {
         profileImage = UIImageView()
         profileImage.image = UIImage(systemName: "person.circle") // TODO: substitute to profile image later
-        profileImage.contentMode = .scaleAspectFit
+        profileImage.tintColor = .systemBrown
+        profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
-//        profileImage.layer.cornerRadius = 10
+        profileImage.layer.cornerRadius = 75
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(profileImage)
     }
@@ -179,17 +194,21 @@ class ProfileEdition: UIView {
         NSLayoutConstraint.activate([
             // scroll view
             scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-             scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 18),
-             scrollView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+             scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+             scrollView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
              scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             
             // profile image
             profileImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
             profileImage.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            profileImage.widthAnchor.constraint(equalToConstant: 150),
+            profileImage.heightAnchor.constraint(equalToConstant: 150),
             
             // edit profile image button
             editProfileImageButton.topAnchor.constraint(equalTo: profileImage.topAnchor),
             editProfileImageButton.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor),
+            editProfileImageButton.widthAnchor.constraint(equalToConstant: 24),
+            editProfileImageButton.heightAnchor.constraint(equalToConstant: 24),
             
             // name label
             nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 24),
@@ -197,8 +216,8 @@ class ProfileEdition: UIView {
             
             // name text field
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            nameTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            nameTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -8),
+            nameTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            nameTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
             
             // gender label
             genderLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10),
@@ -206,7 +225,7 @@ class ProfileEdition: UIView {
             
             // gender select button
             genderSelectButton.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 5),
-            genderSelectButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            genderSelectButton.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: 8),
             
             // location label
             locationLabel.topAnchor.constraint(equalTo: genderSelectButton.bottomAnchor, constant: 10),
@@ -214,17 +233,17 @@ class ProfileEdition: UIView {
             
             // location text field
             locationTextField.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 5),
-            locationTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            locationTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -8),
+            locationTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            locationTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
             
             // cuisine preference label
-            cuisinePreferenceLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10),
+            cuisinePreferenceLabel.topAnchor.constraint(equalTo: locationTextField.bottomAnchor, constant: 10),
             cuisinePreferenceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             
             // cuisine text field
             cuisineTextField.topAnchor.constraint(equalTo: cuisinePreferenceLabel.bottomAnchor, constant: 5),
-            cuisineTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            cuisineTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -8),
+            cuisineTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            cuisineTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
             
             // cuisine table view
             cuisineTableView.topAnchor.constraint(equalTo: cuisineTextField.bottomAnchor), //TODO: need to confirm later
@@ -236,10 +255,12 @@ class ProfileEdition: UIView {
             
             // bio text view
             bioTextView.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 5),
-            bioTextView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            bioTextView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
+            bioTextView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            bioTextView.heightAnchor.constraint(equalToConstant: 120),
             
             // save button
-            saveButton.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 32),
+            saveButton.topAnchor.constraint(equalTo: bioTextView.bottomAnchor, constant: 32),
             saveButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
         
