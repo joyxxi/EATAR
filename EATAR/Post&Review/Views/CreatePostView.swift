@@ -29,6 +29,7 @@ class CreatePostView: UIView {
         setupPeopleField()
         setupTimeField()
         setupLocationField()
+        setupZipCodeField()
         setupNoteField()
         setupPostButton()
         

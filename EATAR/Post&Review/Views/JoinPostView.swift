@@ -33,6 +33,7 @@ class JoinPostView: UIView {
         setupRestaurantInfo()
         setupDetailsLabels()
         setupPeopleJoined()
+        setupZipCodeLabel()
         setupButtons()
         
         initConstraints()

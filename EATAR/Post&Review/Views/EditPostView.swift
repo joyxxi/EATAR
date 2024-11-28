@@ -29,6 +29,7 @@ class EditPostView: UIView {
         setupPeopleField()
         setupTimeField()
         setupLocationField()
+        setupZipCodeField() 
         setupNoteField()
         setupSaveButton()
         

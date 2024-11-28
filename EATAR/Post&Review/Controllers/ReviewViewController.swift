@@ -40,6 +40,19 @@ class ReviewViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupActions()
+        
+    // Add cancel button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(cancelButtonTapped)
+        )
+        navigationItem.leftBarButtonItem?.tintColor = .brown
+
+    }
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true)
     }
     
     // MARK: - Setup Methods
@@ -156,7 +169,7 @@ class ReviewViewController: UIViewController {
             
             // Show success message and return to previous screen
             self.showAlert(message: "Review submitted successfully") { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismiss(animated: true)
             }
         }
     }
