@@ -42,6 +42,21 @@ class EditPostViewController: UIViewController {
         setupActions()
         setupPickers()
         fetchPostDetails()
+        
+        // Add cancel button
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(cancelButtonTapped)
+        )
+        navigationItem.leftBarButtonItem?.tintColor = .brown
+
+    }
+    
+    @objc private func cancelButtonTapped() {
+        // Since EditPostViewController is presented modally
+        dismiss(animated: true)
     }
     
     // MARK: - Setup Methods
@@ -150,19 +165,45 @@ class EditPostViewController: UIViewController {
             }
             
             guard let snapshot = snapshot,
-                  let post = DiningPost.fromFirestore(snapshot as! QueryDocumentSnapshot) else {
+                  snapshot.exists,
+                  let data = snapshot.data() else {
                 self.showAlert(message: "Post not found")
                 return
             }
             
-            // Verify current user is the creator
-            guard let currentUserEmail = Auth.auth().currentUser?.email,
-                  post.creatorId == currentUserEmail else {
-                self.showAlert(message: "You don't have permission to edit this post") { [weak self] in
-                    self?.navigationController?.popViewController(animated: true)
-                }
+            // Create post from data manually since we have DocumentSnapshot
+            guard let restaurantName = data["restaurantName"] as? String,
+                  let cuisine = data["cuisine"] as? String,
+                  let maxPeople = data["maxPeople"] as? Int,
+                  let currentPeople = data["currentPeople"] as? Int,
+                  let dateTime = (data["dateTime"] as? Timestamp)?.dateValue(),
+                  let location = data["location"] as? String,
+                  let zipCode = data["zipCode"] as? String,
+                  let note = data["note"] as? String,
+                  let creatorId = data["creatorId"] as? String,
+                  let participants = data["participants"] as? [String],
+                  let statusRaw = data["status"] as? String,
+                  let createdAt = (data["createdAt"] as? Timestamp)?.dateValue(),
+                  let status = DiningPost.PostStatus(rawValue: statusRaw) else {
+                self.showAlert(message: "Invalid post data")
                 return
             }
+            
+            let post = DiningPost(
+                id: snapshot.documentID,
+                restaurantName: restaurantName,
+                cuisine: cuisine,
+                maxPeople: maxPeople,
+                currentPeople: currentPeople,
+                dateTime: dateTime,
+                location: location,
+                zipCode: zipCode,
+                note: note,
+                creatorId: creatorId,
+                participants: participants,
+                status: status,
+                createdAt: createdAt
+            )
             
             self.originalPost = post
             self.populateFields(with: post)

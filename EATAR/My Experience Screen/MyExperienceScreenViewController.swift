@@ -253,7 +253,9 @@ extension MyExperienceScreenViewController: UITableViewDelegate, UITableViewData
      
      // MARK: - Helper Methods for Menu Actions
     func handleEdit(experience: DiningPost) {
-
+        let editPostVC = EditPostViewController(postId: experience.id)
+        let navController = UINavigationController(rootViewController: editPostVC)
+        present(navController, animated: true)
      }
      
     func handleDelete(experience: DiningPost) {
@@ -261,11 +263,23 @@ extension MyExperienceScreenViewController: UITableViewDelegate, UITableViewData
      }
      
     func handleReview(experience: DiningPost) {
-         
+        let reviewVC = ReviewViewController(postId: experience.id, restaurantName: experience.restaurantName)
+        let navController = UINavigationController(rootViewController: reviewVC)
+        present(navController, animated: true)
      }
  
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+            
+        let post = tableView == myExperienceScreen.tableViewMyPosts ?
+                    myPosts[indexPath.row] :
+                    joinedExperiences[indexPath.row]
+            
+        // Navigate to JoinPostViewController to show details
+        let detailVC = JoinPostViewController(postId: post.id)
+        navigationController?.pushViewController(detailVC, animated: true)
+
 
     }
 }
