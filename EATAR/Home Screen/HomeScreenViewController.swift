@@ -211,7 +211,15 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let post = tableView == homeScreen.tableViewUpcomingExperiences ?
+                   upcomingExperiences[indexPath.row] :
+                   recommendedExperiences[indexPath.row]
+        
+        // Create and push JoinPostViewController
+        let joinPostVC = JoinPostViewController(postId: post.id)
+        navigationController?.pushViewController(joinPostVC, animated: true)
     }
 }
 
