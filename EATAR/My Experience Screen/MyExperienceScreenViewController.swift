@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class MyExperienceScreenViewController: UIViewController {
+    let database = Firestore.firestore()
 
     let myExperienceScreen = MyExperienceScreenView()
     var myPosts = [DiningPost]()
@@ -51,6 +54,7 @@ class MyExperienceScreenViewController: UIViewController {
         myExperienceScreen.tableViewJoinedExperience.delegate = self
         myExperienceScreen.tableViewJoinedExperience.separatorStyle = .none
         
+        /*
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
         //Add Sample Data
@@ -63,7 +67,10 @@ class MyExperienceScreenViewController: UIViewController {
             DiningPost(id: "3", restaurantName:"Pacific Catch", cuisine: "American", maxPeople: 2, currentPeople: 1, dateTime: dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "3", participants: ["3"], status: .active, createdAt: dateFormatter.date(from: "10/14/2024 11:00")!))
         joinedExperiences.append(
             DiningPost(id: "4", restaurantName:"Sweetgreen", cuisine: "American", maxPeople: 3, currentPeople: 1, dateTime: dateFormatter.date(from: "10/17/2024 12:15")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "4", participants: ["4"], status: .active, createdAt: dateFormatter.date(from: "10/15/2024 11:00")!))
-
+         */
+        fetchMyPosts()
+        fetchJoinedExperiences()
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.horizontal.3"),
             style: .done,
@@ -72,7 +79,6 @@ class MyExperienceScreenViewController: UIViewController {
         )
         navigationItem.leftBarButtonItem?.tintColor = .brown
 
-        
         setupMenuItems()
         
         myExperienceScreen.buttonExpand1.addTarget(self, action: #selector(onExpandButtonTapped), for: .touchUpInside)
@@ -86,6 +92,69 @@ class MyExperienceScreenViewController: UIViewController {
         joinedExperienceHeightConstraint.isActive = true
         
     }
+    
+    func fetchMyPosts() {
+        guard let userEmail =  Auth.auth().currentUser?.email else { return }
+        
+        database.collection("posts")
+            .whereField("creatorId", isEqualTo: userEmail)
+             .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue )
+             .whereField("dateTime", isGreaterThan: Date())
+             .order(by: "dateTime")
+             .getDocuments { [weak self] snapshot, error in
+                 guard let self = self else { return }
+                 
+                 if let error = error {
+                     print("Error fetching my posts: \(error.localizedDescription)")
+                     return
+                 }
+                 
+                 self.myPosts = snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? []
+                 
+                 if self.myPosts.count == 0{
+                     self.myExperienceScreen.updateMyPosts(hasMyPosts: false)
+                 }
+
+                 print("DEBUG: My Posts count: \(self.myPosts.count)")
+                 
+                 DispatchQueue.main.async {
+                     self.myExperienceScreen.tableViewMyPosts.reloadData()
+                 }
+             }
+     }
+    
+    func fetchJoinedExperiences() {
+        guard let userEmail =  Auth.auth().currentUser?.email else { return }
+        print("DEBUG: JoinedExperience User Email: \(userEmail)")
+        
+        database.collection("posts")
+            .whereField("participants", arrayContains: userEmail)
+            .whereField("status", isEqualTo: DiningPost.PostStatus.completed.rawValue )
+            .whereField("dateTime", isLessThan: Date())
+             .order(by: "dateTime", descending: true)
+             .getDocuments { [weak self] snapshot, error in
+                 guard let self = self else { return }
+                 
+                 if let error = error {
+                     print("Error fetching joined experience: \(error.localizedDescription)")
+                     return
+                 }
+                 
+                 self.joinedExperiences = snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? []
+                 
+                 if self.joinedExperiences.count == 0{
+                     self.myExperienceScreen.updateJoinedExperiences(hasJoinedExperiences: false)
+                 }
+
+                 print("DEBUG: Joined Experience count: \(self.joinedExperiences.count)")
+                 print(self.joinedExperiences)
+                 
+                 DispatchQueue.main.async {
+                     self.myExperienceScreen.tableViewJoinedExperience.reloadData()
+                 }
+             }
+     }
+    
     func setupViewHierarchy() {
         view = UIView()
         view.addSubview(menuView)
@@ -209,13 +278,15 @@ extension MyExperienceScreenViewController: UITableViewDelegate, UITableViewData
                    joinedExperiences[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "experiences", for: indexPath) as! ExperienceTableViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy HH:mm"
         cell.labelRestaurant.text = "Restaurant: \(post.restaurantName)"
         cell.labelCuisine.text = "Cuisine: \(post.cuisine)"
         cell.labelPeople.text = "People: \(post.currentPeople) / \(post.maxPeople)"
-        cell.labelTime.text = "Time: \(post.dateTime)"
+        cell.labelTime.text = "Time: \(dateFormatter.string(from: post.dateTime))"
         cell.labelLocation.text = "Location: \(post.location)"
         cell.labelPostedBy.text = "Posted By: \(post.creatorId)"
-        cell.labelPostedTime.text = "Posted Time: \(post.createdAt)"
+        cell.labelPostedTime.text = "Posted Time: \(dateFormatter.string(from: post.createdAt))"
         
         
         if tableView == myExperienceScreen.tableViewMyPosts {

@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        PostStatusService.shared.checkAndUpdateCompletedPostsOnAppLaunch()
         
         landingPageScreen.loginButton.addTarget(self, action: #selector(onButtonLoginTapped), for: .touchUpInside)
         

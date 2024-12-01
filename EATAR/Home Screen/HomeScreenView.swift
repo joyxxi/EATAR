@@ -15,6 +15,8 @@ class HomeScreenView: UIView {
     var labelRecommendedExperiences: UILabel!
     var tableViewRecommendedExperiences: UITableView!
     var upcomingExperiencesHeightConstraint: NSLayoutConstraint!
+    var labelNoUpcomingExperiences: UILabel!
+    var labelNoRecommendedExperiences: UILabel!
 
 
     override init(frame: CGRect) {
@@ -49,6 +51,12 @@ class HomeScreenView: UIView {
         buttonExpand.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(buttonExpand)
         
+        labelNoUpcomingExperiences = UILabel()
+        labelNoUpcomingExperiences.text = "No upcoming dining experiences. Start exploring!"
+        labelNoUpcomingExperiences.textColor = .gray
+        labelNoUpcomingExperiences.font = .boldSystemFont(ofSize: 16)
+        labelNoUpcomingExperiences.isHidden = true
+        
         tableViewUpcomingExperiences = UITableView()
         tableViewUpcomingExperiences.register(ExperienceTableViewCell.self, forCellReuseIdentifier: "experiences")
         tableViewUpcomingExperiences.translatesAutoresizingMaskIntoConstraints = false
@@ -60,12 +68,65 @@ class HomeScreenView: UIView {
         labelRecommendedExperiences.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelRecommendedExperiences)
         
+        labelNoRecommendedExperiences = UILabel()
+        labelNoRecommendedExperiences.text = "No recommended dining experiences"
+        labelNoRecommendedExperiences.textColor = .gray
+        labelNoUpcomingExperiences.font = .boldSystemFont(ofSize: 16)
+        labelNoRecommendedExperiences.isHidden = true
+        
         tableViewRecommendedExperiences = UITableView()
         tableViewRecommendedExperiences.register(ExperienceTableViewCell.self, forCellReuseIdentifier: "experiences")
         tableViewRecommendedExperiences.isScrollEnabled = false
         tableViewRecommendedExperiences.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(tableViewRecommendedExperiences)
     }
+    
+    func updateUpcomingExperiencesView(hasExperiences: Bool) {
+        // Show/hide the table view and no experiences label based on experiences availability
+        tableViewUpcomingExperiences.isHidden = !hasExperiences
+        //buttonExpand.isHidden = !hasExperiences
+        
+        // Add the "No upcoming experiences" label to the content wrapper if it's not already added
+        if labelNoUpcomingExperiences.superview == nil {
+            contentWrapper.addSubview(labelNoUpcomingExperiences)
+            
+            // Add constraints for the "No upcoming experiences" label
+            labelNoUpcomingExperiences.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                labelNoUpcomingExperiences.topAnchor.constraint(equalTo: labelUpcomingExperiences.bottomAnchor, constant: 16),
+                labelNoUpcomingExperiences.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            ])
+        }
+        
+        // Show/hide the "No upcoming experiences" label
+        labelNoUpcomingExperiences.isHidden = hasExperiences
+        
+        // If no experiences, adjust the height constraint
+        upcomingExperiencesHeightConstraint.constant = hasExperiences ? 250 : 0
+    }
+    
+    func updateRecommendedExperiencesView(hasRecommendedExperiences: Bool) {
+        // Show/hide the table view and no experiences label based on experiences availability
+        tableViewRecommendedExperiences.isHidden = !hasRecommendedExperiences
+        
+        // Add the "No upcoming experiences" label to the content wrapper if it's not already added
+        if labelNoRecommendedExperiences.superview == nil {
+            contentWrapper.addSubview(labelNoRecommendedExperiences)
+            
+            // Add constraints for the "No upcoming experiences" label
+            labelNoRecommendedExperiences.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                labelNoRecommendedExperiences.topAnchor.constraint(equalTo: labelRecommendedExperiences.bottomAnchor, constant: 16),
+                labelNoRecommendedExperiences.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            ])
+        }
+        
+        // Show/hide the "No upcoming experiences" label
+        labelNoRecommendedExperiences.isHidden = hasRecommendedExperiences
+    
+    }
+    
+    
     
     func initConstraints() {
         upcomingExperiencesHeightConstraint = tableViewUpcomingExperiences.heightAnchor.constraint(equalToConstant: 250)
@@ -85,16 +146,15 @@ class HomeScreenView: UIView {
             
             buttonExpand.centerYAnchor.constraint(equalTo: labelUpcomingExperiences.centerYAnchor),
             buttonExpand.leadingAnchor.constraint(equalTo: labelUpcomingExperiences.trailingAnchor, constant: 8),
-            
+
             upcomingExperiencesHeightConstraint,
             tableViewUpcomingExperiences.topAnchor.constraint(equalTo: labelUpcomingExperiences.bottomAnchor, constant: 16),
             tableViewUpcomingExperiences.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableViewUpcomingExperiences.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            //tableViewUpcomingExperiences.heightAnchor.constraint(equalToConstant: 250),
             
             labelRecommendedExperiences.topAnchor.constraint(equalTo: tableViewUpcomingExperiences.bottomAnchor, constant: 32),
             labelRecommendedExperiences.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            
+
             tableViewRecommendedExperiences.topAnchor.constraint(equalTo: labelRecommendedExperiences.bottomAnchor, constant: 16),
             tableViewRecommendedExperiences.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableViewRecommendedExperiences.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),

@@ -44,9 +44,10 @@ class SignInViewController: UIViewController {
 
             // Fetch hasProfile field after sign-in
             self.fetchUserProfile(email: email)
+            // temporary access to home screen since profile data is not available
             let homeScreenVC = HomeScreenViewController()
-            // Pop HomeScreen (hardcoded posts, not connected to the database yet)
             self.navigationController?.pushViewController(homeScreenVC, animated: true)
+            
         }
     }
 
@@ -103,6 +104,9 @@ class SignInViewController: UIViewController {
                 if hasProfile {
                     // TODO: redirect to the main page if there's a profile
                     self.showAlert(title: "Welcome!", message: "Welcome back!")
+                    // Pop HomeScreen
+                    let homeScreenVC = HomeScreenViewController()
+                    self.navigationController?.pushViewController(homeScreenVC, animated: true)
                 } else {
                     // TODO: redirect to ProfileEdition page if there's no profile
 //                    let profileDetailVC = ProfileEditionController()
