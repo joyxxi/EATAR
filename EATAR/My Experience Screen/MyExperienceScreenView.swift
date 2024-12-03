@@ -18,7 +18,8 @@ class MyExperienceScreenView: UIView {
     var tableViewJoinedExperience: UITableView!
     var MyPostsHeightConstraint: NSLayoutConstraint!
     var JoinedExperienceHeightConstraint: NSLayoutConstraint!
-
+    var labelNoMyPosts: UILabel!
+    var labelNoJoinedExperience: UILabel!
 
 
     override init(frame: CGRect) {
@@ -53,6 +54,12 @@ class MyExperienceScreenView: UIView {
         buttonExpand1.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(buttonExpand1)
         
+        labelNoMyPosts = UILabel()
+        labelNoMyPosts.text = "No opening post yet. Start posting!"
+        labelNoMyPosts.textColor = .gray
+        labelNoMyPosts.font = .boldSystemFont(ofSize: 16)
+        labelNoMyPosts.isHidden = true
+        
         tableViewMyPosts = UITableView()
         tableViewMyPosts.register(ExperienceTableViewCell.self, forCellReuseIdentifier: "experiences")
         tableViewMyPosts.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +71,12 @@ class MyExperienceScreenView: UIView {
         labelJoinedExperience.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelJoinedExperience)
         
+        labelNoJoinedExperience = UILabel()
+        labelNoJoinedExperience.text = "No joined experiences yet."
+        labelNoJoinedExperience.textColor = .gray
+        labelNoJoinedExperience.font = .boldSystemFont(ofSize: 16)
+        labelNoJoinedExperience.isHidden = true
+        
         buttonExpand2 = UIButton(type: .system)
         buttonExpand2.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         buttonExpand2.tintColor = .brown
@@ -74,6 +87,49 @@ class MyExperienceScreenView: UIView {
         tableViewJoinedExperience.register(ExperienceTableViewCell.self, forCellReuseIdentifier: "experiences")
         tableViewJoinedExperience.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(tableViewJoinedExperience)
+    }
+    
+    func updateMyPosts(hasMyPosts: Bool) {
+        // Show/hide the table view and no experiences label based on experiences availability
+        tableViewMyPosts.isHidden = !hasMyPosts
+        //buttonExpand.isHidden = !hasExperiences
+        
+
+        if labelNoMyPosts.superview == nil {
+            contentWrapper.addSubview(labelNoMyPosts)
+            
+            labelNoMyPosts.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                labelNoMyPosts.topAnchor.constraint(equalTo: labelMyPosts.bottomAnchor, constant: 16),
+                labelNoMyPosts.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            ])
+        }
+        
+        labelNoMyPosts.isHidden = hasMyPosts
+        
+        // If no experiences, adjust the height constraint
+        MyPostsHeightConstraint.constant = hasMyPosts ? 250 : 0
+    }
+    
+    func updateJoinedExperiences(hasJoinedExperiences: Bool) {
+        // Show/hide the table view and no experiences label based on experiences availability
+        tableViewJoinedExperience.isHidden = !hasJoinedExperiences
+        //buttonExpand.isHidden = !hasExperiences
+        
+        if labelNoJoinedExperience.superview == nil {
+            contentWrapper.addSubview(labelNoJoinedExperience)
+            
+            labelNoJoinedExperience.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                labelNoJoinedExperience.topAnchor.constraint(equalTo: labelJoinedExperience.bottomAnchor, constant: 16),
+                labelNoJoinedExperience.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            ])
+        }
+        
+        labelNoJoinedExperience.isHidden = hasJoinedExperiences
+        
+        // If no experiences, adjust the height constraint
+        JoinedExperienceHeightConstraint.constant = hasJoinedExperiences ? 250 : 0
     }
     
     func initConstraints() {

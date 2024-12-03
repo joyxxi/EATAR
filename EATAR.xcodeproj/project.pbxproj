@@ -48,6 +48,15 @@
 		A9657E422CD44D3600ED9945 /* EATARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E412CD44D3600ED9945 /* EATARTests.swift */; };
 		A9657E4C2CD44D3700ED9945 /* EATARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */; };
 		A9657E4E2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */; };
+		D76ACFA72CFBEA120020643B /* PostStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76ACFA62CFBEA060020643B /* PostStatusService.swift */; };
+		D76D603E2CFAD86000A5FC0A /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64AC2CF688FF00CD4AC0 /* CreatePostViewController.swift */; };
+		D76D603F2CFAD86500A5FC0A /* JoinPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64B52CF68C1B00CD4AC0 /* JoinPostViewController.swift */; };
+		D76D60402CFAD86900A5FC0A /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64B32CF68BD300CD4AC0 /* EditPostViewController.swift */; };
+		D76D60412CFAD86D00A5FC0A /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64AA2CF6871F00CD4AC0 /* ReviewViewController.swift */; };
+		D76D60422CFAD88E00A5FC0A /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64982CF67E0400CD4AC0 /* CreatePostView.swift */; };
+		D76D60432CFAD89400A5FC0A /* JoinPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF649A2CF67E7D00CD4AC0 /* JoinPostView.swift */; };
+		D76D60442CFAD89900A5FC0A /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF649C2CF67EA300CD4AC0 /* EditPostView.swift */; };
+		D76D60452CFAD89F00A5FC0A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF649E2CF67F1000CD4AC0 /* ReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +135,7 @@
 		B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D114D38FAB85FD087E78EB37 /* Pods-EATARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATARTests.release.xcconfig"; path = "Target Support Files/Pods-EATARTests/Pods-EATARTests.release.xcconfig"; sourceTree = "<group>"; };
+		D76ACFA62CFBEA060020643B /* PostStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStatusService.swift; sourceTree = "<group>"; };
 		D76D60132CF6BA8A00A5FC0A /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
 		D76D60142CF6BA8A00A5FC0A /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		D76D60152CF6BA8A00A5FC0A /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 		A90EAE5E2CF7FA0200AA05FD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D76ACFA62CFBEA060020643B /* PostStatusService.swift */,
 				A90EAE612CF7FF2700AA05FD /* UpdateProfileReminder.swift */,
 				A90EAE5F2CF7FA0A00AA05FD /* LocationManager.swift */,
 			);
@@ -673,11 +684,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76D60442CFAD89900A5FC0A /* EditPostView.swift in Sources */,
+				D76D603E2CFAD86000A5FC0A /* CreatePostViewController.swift in Sources */,
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
+				D76D60412CFAD86D00A5FC0A /* ReviewViewController.swift in Sources */,
 				A912BAB12CF7F4C800DF169C /* MyExperienceScreenViewController.swift in Sources */,
+				D76D60432CFAD89400A5FC0A /* JoinPostView.swift in Sources */,
 				A912BAB22CF7F4C800DF169C /* MyExperienceScreenView.swift in Sources */,
 				A912BAA82CF7F4B700DF169C /* PostManager.swift in Sources */,
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
+				D76D603F2CFAD86500A5FC0A /* JoinPostViewController.swift in Sources */,
+				D76D60422CFAD88E00A5FC0A /* CreatePostView.swift in Sources */,
 				A912BAAC2CF7F4BF00DF169C /* DiningPost.swift in Sources */,
 				A912BAAD2CF7F4BF00DF169C /* Review.swift in Sources */,
 				A90EAE702CF81DCF00AA05FD /* CreatePostView.swift in Sources */,
@@ -694,6 +711,9 @@
 				A912BA312CF7F27C00DF169C /* ProfileEdition.swift in Sources */,
 				A90EAE622CF7FF3300AA05FD /* UpdateProfileReminder.swift in Sources */,
 				A9657E2D2CD44D3500ED9945 /* SceneDelegate.swift in Sources */,
+				D76D60402CFAD86900A5FC0A /* EditPostViewController.swift in Sources */,
+				D76ACFA72CFBEA120020643B /* PostStatusService.swift in Sources */,
+				D76D60452CFAD89F00A5FC0A /* ReviewView.swift in Sources */,
 				A912BAB52CF7F4DE00DF169C /* MenuView.swift in Sources */,
 				A912BAA32CF7F4AD00DF169C /* HomeScreenView.swift in Sources */,
 				A90EAE602CF7FA0E00AA05FD /* LocationManager.swift in Sources */,

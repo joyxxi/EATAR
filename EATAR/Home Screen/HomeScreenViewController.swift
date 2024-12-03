@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+
 
 class HomeScreenViewController: UIViewController {
+    let database = Firestore.firestore()
 
-    
+
     let homeScreen = HomeScreenView()
     var upcomingExperiences = [DiningPost]()
     var recommendedExperiences = [DiningPost]()
@@ -30,7 +34,6 @@ class HomeScreenViewController: UIViewController {
         return view
     }()
 
-
     override func loadView() {
         super.loadView()
         setupViewHierarchy()
@@ -49,21 +52,25 @@ class HomeScreenViewController: UIViewController {
         homeScreen.tableViewRecommendedExperiences.dataSource = self
         homeScreen.tableViewRecommendedExperiences.delegate = self
         homeScreen.tableViewRecommendedExperiences.separatorStyle = .none
-        
+        /**
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
         
+      
         //Add Sample Data
         upcomingExperiences.append(
             DiningPost(id: "1", restaurantName: "Shang Cafe", cuisine: "Chinese", maxPeople: 4, currentPeople: 1, dateTime:dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, San Jose, CA", zipCode: "94089", note: "", creatorId: "1", participants: ["1"], status: .active, createdAt:dateFormatter.date(from: "10/11/2024 11:00")!))
         upcomingExperiences.append(
             DiningPost(id: "2", restaurantName:"Dish & Dash", cuisine: "Mediterran", maxPeople: 4, currentPeople: 2, dateTime: dateFormatter.date(from: "10/15/2024 12:30")!, location: "xx St, Sunnyvale, CA", zipCode: "94091", note: "", creatorId: "2", participants: ["1", "2"], status: .active, createdAt: dateFormatter.date(from: "10/12/2024 11:00")!))
-        
+    
+        // Sample recommended Experience date
         recommendedExperiences.append(
             DiningPost(id: "3", restaurantName:"Pacific Catch", cuisine: "American", maxPeople: 2, currentPeople: 1, dateTime: dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "3", participants: ["3"], status: .active, createdAt: dateFormatter.date(from: "10/14/2024 11:00")!))
         recommendedExperiences.append(
             DiningPost(id: "4", restaurantName:"Sweetgreen", cuisine: "American", maxPeople: 3, currentPeople: 1, dateTime: dateFormatter.date(from: "10/17/2024 12:15")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "4", participants: ["4"], status: .active, createdAt: dateFormatter.date(from: "10/15/2024 11:00")!))
-
+         */
+        fetchUpcomingExperiences()
+        fetchRecommendedExperiences()
         
         //Set up the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -92,6 +99,115 @@ class HomeScreenViewController: UIViewController {
                 upcomingExperiencesHeightConstraint.isActive = true
         
     }
+    
+    func fetchUpcomingExperiences() {
+        guard let userEmail =  Auth.auth().currentUser?.email else { return }
+        
+        database.collection("posts")
+            .whereField("participants", arrayContains: userEmail)
+             .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue )
+             .whereField("dateTime", isGreaterThan: Date())
+             .order(by: "dateTime")
+             .getDocuments { [weak self] snapshot, error in
+                 guard let self = self else { return }
+                 
+                 if let error = error {
+                     print("Error fetching upcoming experiences: \(error.localizedDescription)")
+                     return
+                 }
+                 
+                 self.upcomingExperiences = snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? []
+                 
+                 if self.upcomingExperiences.count == 0{
+                     self.homeScreen.updateUpcomingExperiencesView(hasExperiences: false)
+                 }
+
+                 print("DEBUG: Upcoming Experiences count: \(self.upcomingExperiences.count)")
+                 
+                 DispatchQueue.main.async {
+                     self.homeScreen.tableViewUpcomingExperiences.reloadData()
+                 }
+             }
+     }
+    
+    func fetchRecommendedExperiences() {
+        guard let currentUser = Auth.auth().currentUser else { return }
+            
+        // Extract user zipcode
+        //guard let userZipCode =  Auth.auth().currentUser?.zipCode else { return }
+        let userZipCode = "95051"
+        
+        print("DEBUG: User Zipcode: \(userZipCode)")
+        
+        // Query recommended experiences
+        self.database.collection("posts")
+            .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue)
+            .whereField("dateTime", isGreaterThan: Date())
+            .whereField("zipCode",  isLessThan: userZipCode.prefix(2) + "9")
+            .getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error fetching recommended experiences: \(error.localizedDescription)")
+                    return
+                }
+                
+                print("DEBUG: Total recommended documents retrieved: \(snapshot?.documents.count ?? 0)")
+
+                
+                // Filter out posts the user has already joined
+                self.recommendedExperiences = (snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? [])
+                    .filter { post in
+                        !post.participants.contains(currentUser.email ?? "") &&
+                        post.creatorId != currentUser.uid
+                    }
+                
+                // If no experience matched the recommendation logic
+                if self.recommendedExperiences.isEmpty {
+                    print("DEBUG: No recommended posts. Fetching all active posts...")
+                    self.fetchAllActivePosts(excluding: currentUser)
+                } else {
+                    print("DEBUG: Recommended Experiences count: \(self.recommendedExperiences.count)")
+                    DispatchQueue.main.async {
+                        self.homeScreen.tableViewRecommendedExperiences.reloadData()
+                    }
+                }
+            }
+    }
+    
+    func fetchAllActivePosts(excluding currentUser: User) {
+        self.database.collection("posts")
+            .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue)
+            .whereField("dateTime", isGreaterThan: Date())
+            .order(by: "dateTime")
+            .getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error fetching all active posts: \(error.localizedDescription)")
+                    return
+                }
+                
+                print("DEBUG: Total active documents retrieved: \(snapshot?.documents.count ?? 0)")
+
+                // Filter out posts the user has already joined
+                self.recommendedExperiences = (snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? [])
+                    .filter { post in
+                        !post.participants.contains(currentUser.email ?? "") &&
+                        post.creatorId != currentUser.uid
+                    }
+                
+                if self.recommendedExperiences.count == 0{
+                    self.homeScreen.updateRecommendedExperiencesView(hasRecommendedExperiences: false)
+                }
+                
+                print("DEBUG: All Active Experiences count: \(self.recommendedExperiences.count)")
+                DispatchQueue.main.async {
+                    self.homeScreen.tableViewRecommendedExperiences.reloadData()
+                }
+            }
+    }
+
     func setupViewHierarchy() {
         view = UIView()
         view.addSubview(menuView)
@@ -201,13 +317,15 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource{
                    recommendedExperiences[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "experiences", for: indexPath) as! ExperienceTableViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy HH:mm"
         cell.labelRestaurant.text = "Restaurant: \(post.restaurantName)"
         cell.labelCuisine.text = "Cuisine: \(post.cuisine)"
         cell.labelPeople.text = "People: \(post.currentPeople) / \(post.maxPeople)"
-        cell.labelTime.text = "Time: \(post.dateTime)"
+        cell.labelTime.text = "Time: \(dateFormatter.string(from: post.dateTime))"
         cell.labelLocation.text = "Location: \(post.location)"
         cell.labelPostedBy.text = "Posted By: \(post.creatorId)"
-        cell.labelPostedTime.text = "Posted Time: \(post.createdAt)"
+        cell.labelPostedTime.text = "Posted Time: \(dateFormatter.string(from: post.createdAt))"
 
         return cell
     }
