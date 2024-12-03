@@ -16,6 +16,14 @@
 		A90EAE602CF7FA0E00AA05FD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE5F2CF7FA0A00AA05FD /* LocationManager.swift */; };
 		A90EAE622CF7FF3300AA05FD /* UpdateProfileReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE612CF7FF2700AA05FD /* UpdateProfileReminder.swift */; };
 		A90EAE642CF81ADB00AA05FD /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE632CF81AD300AA05FD /* PhotoManager.swift */; };
+		A90EAE702CF81DCF00AA05FD /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE6A2CF81DCF00AA05FD /* CreatePostView.swift */; };
+		A90EAE712CF81DCF00AA05FD /* JoinPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE6C2CF81DCF00AA05FD /* JoinPostView.swift */; };
+		A90EAE722CF81DCF00AA05FD /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE6B2CF81DCF00AA05FD /* EditPostView.swift */; };
+		A90EAE732CF81DCF00AA05FD /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE682CF81DCF00AA05FD /* ReviewViewController.swift */; };
+		A90EAE742CF81DCF00AA05FD /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE6D2CF81DCF00AA05FD /* ReviewView.swift */; };
+		A90EAE752CF81DCF00AA05FD /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE662CF81DCF00AA05FD /* EditPostViewController.swift */; };
+		A90EAE762CF81DCF00AA05FD /* JoinPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE672CF81DCF00AA05FD /* JoinPostViewController.swift */; };
+		A90EAE772CF81DCF00AA05FD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90EAE652CF81DCF00AA05FD /* CreatePostViewController.swift */; };
 		A912BA2E2CF7F27C00DF169C /* ProfileEditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA282CF7F27C00DF169C /* ProfileEditionViewController.swift */; };
 		A912BA2F2CF7F27C00DF169C /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA272CF7F27C00DF169C /* ProfileDetailViewController.swift */; };
 		A912BA302CF7F27C00DF169C /* ProfileDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA2A2CF7F27C00DF169C /* ProfileDetail.swift */; };
@@ -76,6 +84,14 @@
 		A90EAE5F2CF7FA0A00AA05FD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A90EAE612CF7FF2700AA05FD /* UpdateProfileReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileReminder.swift; sourceTree = "<group>"; };
 		A90EAE632CF81AD300AA05FD /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		A90EAE652CF81DCF00AA05FD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		A90EAE662CF81DCF00AA05FD /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
+		A90EAE672CF81DCF00AA05FD /* JoinPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPostViewController.swift; sourceTree = "<group>"; };
+		A90EAE682CF81DCF00AA05FD /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		A90EAE6A2CF81DCF00AA05FD /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		A90EAE6B2CF81DCF00AA05FD /* EditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostView.swift; sourceTree = "<group>"; };
+		A90EAE6C2CF81DCF00AA05FD /* JoinPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPostView.swift; sourceTree = "<group>"; };
+		A90EAE6D2CF81DCF00AA05FD /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		A912BA272CF7F27C00DF169C /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A912BA282CF7F27C00DF169C /* ProfileEditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditionViewController.swift; sourceTree = "<group>"; };
 		A912BA2A2CF7F27C00DF169C /* ProfileDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetail.swift; sourceTree = "<group>"; };
@@ -217,6 +233,37 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		A90EAE692CF81DCF00AA05FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A90EAE652CF81DCF00AA05FD /* CreatePostViewController.swift */,
+				A90EAE662CF81DCF00AA05FD /* EditPostViewController.swift */,
+				A90EAE672CF81DCF00AA05FD /* JoinPostViewController.swift */,
+				A90EAE682CF81DCF00AA05FD /* ReviewViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A90EAE6E2CF81DCF00AA05FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A90EAE6A2CF81DCF00AA05FD /* CreatePostView.swift */,
+				A90EAE6B2CF81DCF00AA05FD /* EditPostView.swift */,
+				A90EAE6C2CF81DCF00AA05FD /* JoinPostView.swift */,
+				A90EAE6D2CF81DCF00AA05FD /* ReviewView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A90EAE6F2CF81DCF00AA05FD /* Post&Review */ = {
+			isa = PBXGroup;
+			children = (
+				A90EAE692CF81DCF00AA05FD /* Controllers */,
+				A90EAE6E2CF81DCF00AA05FD /* Views */,
+			);
+			path = "Post&Review";
+			sourceTree = "<group>";
+		};
 		A912BA192CF7F22D00DF169C /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +386,7 @@
 		A9657E292CD44D3500ED9945 /* EATAR */ = {
 			isa = PBXGroup;
 			children = (
+				A90EAE6F2CF81DCF00AA05FD /* Post&Review */,
 				A90EAE5E2CF7FA0200AA05FD /* Utils */,
 				A912BAB42CF7F4DE00DF169C /* Side Menu */,
 				A912BAB02CF7F4C800DF169C /* My Experience Screen */,
@@ -632,6 +680,14 @@
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
 				A912BAAC2CF7F4BF00DF169C /* DiningPost.swift in Sources */,
 				A912BAAD2CF7F4BF00DF169C /* Review.swift in Sources */,
+				A90EAE702CF81DCF00AA05FD /* CreatePostView.swift in Sources */,
+				A90EAE712CF81DCF00AA05FD /* JoinPostView.swift in Sources */,
+				A90EAE722CF81DCF00AA05FD /* EditPostView.swift in Sources */,
+				A90EAE732CF81DCF00AA05FD /* ReviewViewController.swift in Sources */,
+				A90EAE742CF81DCF00AA05FD /* ReviewView.swift in Sources */,
+				A90EAE752CF81DCF00AA05FD /* EditPostViewController.swift in Sources */,
+				A90EAE762CF81DCF00AA05FD /* JoinPostViewController.swift in Sources */,
+				A90EAE772CF81DCF00AA05FD /* CreatePostViewController.swift in Sources */,
 				A912BA2E2CF7F27C00DF169C /* ProfileEditionViewController.swift in Sources */,
 				A912BA2F2CF7F27C00DF169C /* ProfileDetailViewController.swift in Sources */,
 				A912BA302CF7F27C00DF169C /* ProfileDetail.swift in Sources */,

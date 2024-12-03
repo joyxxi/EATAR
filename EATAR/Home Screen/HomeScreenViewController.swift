@@ -178,7 +178,7 @@ class HomeScreenViewController: UIViewController {
         print("Profile tapped")
         let profileDetailVC = ProfileDetailViewController()
         navigationController?.pushViewController(profileDetailVC, animated: true)
-        profileDetailVC.navigationItem.hidesBackButton = true
+//        profileDetailVC.navigationItem.hidesBackButton = true
     }
     
 
