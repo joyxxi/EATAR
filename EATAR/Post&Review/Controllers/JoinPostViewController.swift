@@ -63,15 +63,17 @@ class JoinPostViewController: UIViewController {
         dateFormatter.dateFormat = "MM/dd/yy HH:mm"
         joinPostView.timeLabel.text = "Time: \(dateFormatter.string(from: post.dateTime))"
         joinPostView.locationLabel.text = "Location: \(post.location)"
-        joinPostView.zipCodeLabel.text = "Zip Code: \(post.zipCode)"
         
-        // Check if current user is participating
-        if let currentUserEmail = Auth.auth().currentUser?.email {
-            isParticipating = post.participants.contains(currentUserEmail)
-            updateButtonsState()
-        }
-        joinPostView.updateParticipantCircles(maxPeople: post.maxPeople, currentParticipants: post.currentPeople)
-
+        // Update participant circles with current user preview
+        let currentUserEmail = Auth.auth().currentUser?.email
+        joinPostView.updateParticipantCircles(
+            maxPeople: post.maxPeople,
+            participants: post.participants,
+            currentUserEmail: isParticipating ? nil : currentUserEmail
+        )
+        
+        // Update buttons state
+        updateButtonsState()
     }
     
     private func updateButtonsState() {
