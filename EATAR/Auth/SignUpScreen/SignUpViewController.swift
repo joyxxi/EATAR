@@ -116,11 +116,6 @@ class SignupViewController: UIViewController {
                 return
             }
             
-            // TODO: remove after adding redirects in fetchUserProfile()
-            self.showAlert(title: "Success", message: "Account created and logged in successfully!") {
-                // Replace this with navigation to your main app screen
-                self.navigationController?.popToRootViewController(animated: true)
-            }
             self.fetchUserProfile(email: email)
         }
     }
@@ -143,10 +138,12 @@ class SignupViewController: UIViewController {
                 print("hasProfile for user \(email): \(hasProfile)")
 
                 if hasProfile {
-                    // TODO: redirect to the main page if there's a profile
-                    self.showAlert(title: "Welcome!", message: "Welcome back!")
+                    let homeScreenVC = HomeScreenViewController()
+                    self.navigationController?.pushViewController(homeScreenVC, animated: true)
                 } else {
                     // TODO: redirect to ProfileEdition page if there's no profile
+                    let homeScreenVC = HomeScreenViewController()
+                    self.navigationController?.pushViewController(homeScreenVC, animated: true)
 //                    let profileDetailVC = ProfileEditionController()
 //                    self.navigationController?.pushViewController(profileDetailVC, animated: true)
                 }

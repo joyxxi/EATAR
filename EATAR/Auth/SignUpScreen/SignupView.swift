@@ -11,7 +11,6 @@ class SignupView: UIView {
 
     var labelSignUp: UILabel!
     var labelSentence: UILabel!
-    var photoIconImageView: UIImageView!
     var textfieldName: UITextField!
     var textfieldEmail: UITextField!
     var textfieldPassword: UITextField!
@@ -24,7 +23,6 @@ class SignupView: UIView {
         
         setupLabelSignUp()
         setupLabelSentence()
-        setupPhotoIcon()
         setupTextFieldName()
         setupTextFieldEmail()
         setupTextFieldPassword()
@@ -51,13 +49,6 @@ class SignupView: UIView {
         labelSentence.textAlignment = .center
         labelSentence.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelSentence)
-    }
-    
-    func setupPhotoIcon(){
-        photoIconImageView = UIImageView(image: UIImage(systemName: "camera.circle"))
-        photoIconImageView.tintColor = .darkGray
-        photoIconImageView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(photoIconImageView)
     }
     
     func createCustomTextField(placeholder: String) -> UITextField {
@@ -119,12 +110,7 @@ class SignupView: UIView {
             labelSentence.topAnchor.constraint(equalTo: labelSignUp.bottomAnchor, constant: 5),
             labelSentence.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            photoIconImageView.topAnchor.constraint(equalTo: labelSentence.bottomAnchor, constant: 47),
-            photoIconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            photoIconImageView.widthAnchor.constraint(equalToConstant: 90),
-            photoIconImageView.heightAnchor.constraint(equalToConstant: 90),
-            
-            textfieldName.topAnchor.constraint(equalTo: photoIconImageView.bottomAnchor, constant: 26),
+            textfieldName.topAnchor.constraint(equalTo: labelSentence.bottomAnchor, constant: 80),
             textfieldName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             textfieldName.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             textfieldName.heightAnchor.constraint(equalToConstant: 50),
@@ -144,7 +130,7 @@ class SignupView: UIView {
             textfieldConfirmPassword.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             textfieldConfirmPassword.heightAnchor.constraint(equalToConstant: 50),
             
-            buttonSignUp.topAnchor.constraint(equalTo: textfieldConfirmPassword.bottomAnchor, constant: 30),
+            buttonSignUp.topAnchor.constraint(equalTo: textfieldConfirmPassword.bottomAnchor, constant: 80),
             buttonSignUp.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 120),
             buttonSignUp.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -120),
             buttonSignUp.heightAnchor.constraint(equalToConstant: 50)
