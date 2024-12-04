@@ -23,6 +23,7 @@ class JoinPostView: UIView {
     var buttonStackView: UIStackView!
     var joinButton: UIButton!
     var leaveButton: UIButton!
+    var participantsContainerView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -100,30 +101,66 @@ class JoinPostView: UIView {
     }
     
     func setupPeopleJoined() {
-        peopleJoinedLabel = UILabel()
-        peopleJoinedLabel.text = "People Joined:"
-        peopleJoinedLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-        peopleJoinedLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(peopleJoinedLabel)
+            peopleJoinedLabel = UILabel()
+            peopleJoinedLabel.text = "People Joined:"
+            peopleJoinedLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            peopleJoinedLabel.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(peopleJoinedLabel)
+            
+            // Create container view for participants
+            participantsContainerView = UIView()
+            participantsContainerView.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(participantsContainerView)
+    }
+    
+    func updateParticipantCircles(maxPeople: Int, currentParticipants: Int) {
+        // Remove existing circles
+        participantsContainerView.subviews.forEach { $0.removeFromSuperview() }
         
-        joinedPeopleStackView = UIStackView()
-        joinedPeopleStackView.axis = .horizontal
-        joinedPeopleStackView.spacing = 10
-        joinedPeopleStackView.distribution = .fillEqually
-        joinedPeopleStackView.translatesAutoresizingMaskIntoConstraints = false
+        let circlesPerRow = 5
+        let circleSize: CGFloat = 40
+        let horizontalSpacing: CGFloat = 10
+        let verticalSpacing: CGFloat = 10
         
-        // Add avatar circles
-        for i in 0..<4 {
+        var currentRow = 0
+        var currentColumn = 0
+        
+        for i in 0..<maxPeople {
             let avatarView = UIView()
-            avatarView.backgroundColor = i < 2 ? .systemGray3 : .systemGray5
-            avatarView.layer.cornerRadius = 20
+            avatarView.backgroundColor = i < currentParticipants ? .systemGray3 : .systemGray5
+            avatarView.layer.cornerRadius = circleSize / 2
             avatarView.translatesAutoresizingMaskIntoConstraints = false
-            avatarView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-            avatarView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-            joinedPeopleStackView.addArrangedSubview(avatarView)
+            participantsContainerView.addSubview(avatarView)
+            
+            // Calculate position
+            let xPosition = CGFloat(currentColumn) * (circleSize + horizontalSpacing)
+            let yPosition = CGFloat(currentRow) * (circleSize + verticalSpacing)
+            
+            NSLayoutConstraint.activate([
+                avatarView.leadingAnchor.constraint(equalTo: participantsContainerView.leadingAnchor, constant: xPosition),
+                avatarView.topAnchor.constraint(equalTo: participantsContainerView.topAnchor, constant: yPosition),
+                avatarView.widthAnchor.constraint(equalToConstant: circleSize),
+                avatarView.heightAnchor.constraint(equalToConstant: circleSize)
+            ])
+            
+            // Update row and column counters
+            currentColumn += 1
+            if currentColumn >= circlesPerRow {
+                currentColumn = 0
+                currentRow += 1
+            }
         }
         
-        self.addSubview(joinedPeopleStackView)
+        // Update container view constraints
+        let rows = ceil(Float(maxPeople) / Float(circlesPerRow))
+        let containerHeight = CGFloat(rows) * circleSize + CGFloat(max(0, rows - 1)) * verticalSpacing
+        let containerWidth = min(CGFloat(maxPeople), CGFloat(circlesPerRow)) * circleSize +
+                           CGFloat(min(maxPeople - 1, circlesPerRow - 1)) * horizontalSpacing
+        
+        NSLayoutConstraint.activate([
+            participantsContainerView.heightAnchor.constraint(equalToConstant: containerHeight),
+            participantsContainerView.widthAnchor.constraint(equalToConstant: containerWidth)
+        ])
     }
     
     func setupButtons() {
@@ -194,12 +231,11 @@ class JoinPostView: UIView {
             peopleJoinedLabel.topAnchor.constraint(equalTo: zipCodeLabel.bottomAnchor, constant: 30),
             peopleJoinedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
-            joinedPeopleStackView.topAnchor.constraint(equalTo: peopleJoinedLabel.bottomAnchor, constant: 10),
-            joinedPeopleStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            joinedPeopleStackView.widthAnchor.constraint(equalToConstant: 190),
-            joinedPeopleStackView.heightAnchor.constraint(equalToConstant: 40),
+            participantsContainerView.topAnchor.constraint(equalTo: peopleJoinedLabel.bottomAnchor, constant: 10),
+            participantsContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+
             
-            buttonStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            buttonStackView.topAnchor.constraint(equalTo: participantsContainerView.bottomAnchor, constant: 30),
             buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
             buttonStackView.heightAnchor.constraint(equalToConstant: 44)

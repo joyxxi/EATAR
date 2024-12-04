@@ -70,6 +70,8 @@ class JoinPostViewController: UIViewController {
             isParticipating = post.participants.contains(currentUserEmail)
             updateButtonsState()
         }
+        joinPostView.updateParticipantCircles(maxPeople: post.maxPeople, currentParticipants: post.currentPeople)
+
     }
     
     private func updateButtonsState() {
