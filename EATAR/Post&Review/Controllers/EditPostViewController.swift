@@ -249,7 +249,7 @@ class EditPostViewController: UIViewController {
             }
             
             self.showAlert(message: "Changes saved successfully") { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismiss(animated: true)
             }
         }
     }

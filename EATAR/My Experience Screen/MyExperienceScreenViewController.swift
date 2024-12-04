@@ -330,8 +330,59 @@ extension MyExperienceScreenViewController: UITableViewDelegate, UITableViewData
      }
      
     func handleDelete(experience: DiningPost) {
-
-     }
+        // Show confirmation alert before deleting
+        let alert = UIAlertController(
+            title: "Delete Post",
+            message: "Are you sure you want to delete this dining experience?",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            
+            // Show loading indicator
+            let loadingIndicator = UIActivityIndicatorView(style: .large)
+            loadingIndicator.center = self.view.center
+            self.view.addSubview(loadingIndicator)
+            loadingIndicator.startAnimating()
+            
+            // Delete from Firestore
+            self.database.collection("posts").document(experience.id).delete { [weak self] error in
+                guard let self = self else { return }
+                
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+                
+                if let error = error {
+                    self.showAlert(message: "Error deleting post: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Remove from local array and update UI
+                if let index = self.myPosts.firstIndex(where: { $0.id == experience.id }) {
+                    self.myPosts.remove(at: index)
+                    self.myExperienceScreen.tableViewMyPosts.reloadData()
+                }
+                
+                self.showAlert(message: "Post deleted successfully")
+            }
+        })
+        
+        present(alert, animated: true)
+    }
+    
+    // Add helper method for alerts
+    private func showAlert(message: String) {
+        let alert = UIAlertController(
+            title: nil,
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
      
     func handleReview(experience: DiningPost) {
         let reviewVC = ReviewViewController(postId: experience.id, restaurantName: experience.restaurantName)
