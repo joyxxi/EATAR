@@ -102,7 +102,6 @@ class SignInViewController: UIViewController {
                 print("hasProfile for user \(email): \(hasProfile)")
 
                 if hasProfile {
-                    // TODO: redirect to the main page if there's a profile
                     self.showAlert(title: "Welcome!", message: "Welcome back!")
                     // Pop HomeScreen
                     let homeScreenVC = HomeScreenViewController()
