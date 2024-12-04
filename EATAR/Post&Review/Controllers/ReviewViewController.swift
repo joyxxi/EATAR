@@ -68,11 +68,11 @@ class ReviewViewController: UIViewController {
     }
     
     private func setupActions() {
-        // Back button action
-        reviewView.backButton.addTarget(self,
-                                      action: #selector(backButtonTapped),
-                                      for: .touchUpInside)
-        
+//        // Back button action
+//        reviewView.backButton.addTarget(self,
+//                                      action: #selector(backButtonTapped),
+//                                      for: .touchUpInside)
+//        
         // Submit button action
         reviewView.submitButton.addTarget(self,
                                         action: #selector(submitButtonTapped),

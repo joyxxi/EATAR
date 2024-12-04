@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 class ReviewView: UIView {
     
-    var backButton: UIButton!
+//    var backButton: UIButton!
     var titleLabel: UILabel!
     var foodRatingView: RatingView!
     var serviceRatingView: RatingView!
@@ -23,7 +23,7 @@ class ReviewView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         
-        setupBackButton()
+//        setupBackButton()
         setupTitleLabel()
         setupRatingViews()
         setupReviewTextView()
@@ -37,13 +37,13 @@ class ReviewView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupBackButton() {
-        backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        backButton.tintColor = .black
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(backButton)
-    }
+//    func setupBackButton() {
+//        backButton = UIButton(type: .system)
+//        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+//        backButton.tintColor = .black
+//        backButton.translatesAutoresizingMaskIntoConstraints = false
+//        self.addSubview(backButton)
+//    }
     
     func setupTitleLabel() {
         titleLabel = UILabel()
@@ -97,12 +97,12 @@ class ReviewView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
-            
-            titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
+//            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+//            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+//            backButton.widthAnchor.constraint(equalToConstant: 30),
+//            backButton.heightAnchor.constraint(equalToConstant: 30),
+//            
+            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
             foodRatingView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
