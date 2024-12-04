@@ -37,6 +37,22 @@ class ProfileDetail: UIView {
         
         
     }
+    
+
+    func loadRemoteImage(from url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.profileImage.image = image
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
     func setupEditButton() {
         editButton = UIButton(type: .system)
         editButton.setTitle("Edit Profile", for: .normal)
@@ -117,7 +133,7 @@ class ProfileDetail: UIView {
         nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "Name: "
+        nameLabel.text = "Username: "
         scrollView.addSubview(nameLabel)
     }
     
@@ -127,7 +143,7 @@ class ProfileDetail: UIView {
         profileImage.image = UIImage(systemName: "person.circle")
         profileImage.contentMode = .scaleAspectFit
         profileImage.clipsToBounds = true
-        profileImage.layer.cornerRadius = 50
+        profileImage.layer.cornerRadius = 75
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(profileImage)
     }

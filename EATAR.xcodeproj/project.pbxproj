@@ -30,7 +30,6 @@
 		A912BA312CF7F27C00DF169C /* ProfileEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA2B2CF7F27C00DF169C /* ProfileEdition.swift */; };
 		A912BA9B2CF7F49500DF169C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A912BA992CF7F49500DF169C /* Main.storyboard */; };
 		A912BA9C2CF7F49500DF169C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A912BA972CF7F49500DF169C /* LaunchScreen.storyboard */; };
-		A912BA9E2CF7F4A500DF169C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A912BA9D2CF7F4A500DF169C /* GoogleService-Info.plist */; };
 		A912BAA32CF7F4AD00DF169C /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA02CF7F4AD00DF169C /* HomeScreenView.swift */; };
 		A912BAA42CF7F4AD00DF169C /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA9F2CF7F4AD00DF169C /* ExperienceTableViewCell.swift */; };
 		A912BAA52CF7F4AD00DF169C /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA12CF7F4AD00DF169C /* HomeScreenViewController.swift */; };
@@ -48,6 +47,13 @@
 		A9657E422CD44D3600ED9945 /* EATARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E412CD44D3600ED9945 /* EATARTests.swift */; };
 		A9657E4C2CD44D3700ED9945 /* EATARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */; };
 		A9657E4E2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */; };
+		A9CF847F2CFF7FEA00DAACEC /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF847E2CFF7FE500DAACEC /* Profile.swift */; };
+		A9CF84812CFF949100DAACEC /* GenderTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF84802CFF948C00DAACEC /* GenderTypes.swift */; };
+		A9CF84902CFFF8AA00DAACEC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9CF848F2CFFF8AA00DAACEC /* GoogleService-Info.plist */; };
+		A9CF849F2CFFFDFB00DAACEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A9CF849E2CFFFDFB00DAACEC /* FirebaseAuth */; };
+		A9CF84A12CFFFDFB00DAACEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A9CF84A02CFFFDFB00DAACEC /* FirebaseFirestore */; };
+		A9CF84A32CFFFDFB00DAACEC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9CF84A22CFFFDFB00DAACEC /* FirebaseStorage */; };
+		A9CF84BF2D002E7200DAACEC /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF84BE2D002E6E00DAACEC /* NotificationNames.swift */; };
 		D76ACFA72CFBEA120020643B /* PostStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76ACFA62CFBEA060020643B /* PostStatusService.swift */; };
 		D76D603E2CFAD86000A5FC0A /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64AC2CF688FF00CD4AC0 /* CreatePostViewController.swift */; };
 		D76D603F2CFAD86500A5FC0A /* JoinPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CF64B52CF68C1B00CD4AC0 /* JoinPostViewController.swift */; };
@@ -107,7 +113,6 @@
 		A912BA2B2CF7F27C00DF169C /* ProfileEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdition.swift; sourceTree = "<group>"; };
 		A912BA962CF7F49500DF169C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A912BA982CF7F49500DF169C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		A912BA9D2CF7F4A500DF169C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A912BA9F2CF7F4AD00DF169C /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
 		A912BAA02CF7F4AD00DF169C /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		A912BAA12CF7F4AD00DF169C /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +137,10 @@
 		A9657E472CD44D3700ED9945 /* EATARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EATARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9657E4B2CD44D3700ED9945 /* EATARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EATARUITests.swift; sourceTree = "<group>"; };
 		A9657E4D2CD44D3700ED9945 /* EATARUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EATARUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9CF847E2CFF7FE500DAACEC /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A9CF84802CFF948C00DAACEC /* GenderTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTypes.swift; sourceTree = "<group>"; };
+		A9CF848F2CFFF8AA00DAACEC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A9CF84BE2D002E6E00DAACEC /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR-EATARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D114D38FAB85FD087E78EB37 /* Pods-EATARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATARTests.release.xcconfig"; path = "Target Support Files/Pods-EATARTests/Pods-EATARTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,9 +164,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A2142721C49DF54229E467 /* libPods-EATAR.a in Frameworks */,
+				A9CF849F2CFFFDFB00DAACEC /* FirebaseAuth in Frameworks */,
 				6C59D74F2CF2D6A3005A1CDD /* FirebaseFirestore in Frameworks */,
 				6C59D74D2CF2D6A3005A1CDD /* FirebaseCore in Frameworks */,
+				A9CF84A32CFFFDFB00DAACEC /* FirebaseStorage in Frameworks */,
 				6C59D74B2CF2D6A3005A1CDD /* FirebaseAuth in Frameworks */,
+				A9CF84A12CFFFDFB00DAACEC /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,14 +246,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A90EAE5E2CF7FA0200AA05FD /* Utils */ = {
+		A90EAE5E2CF7FA0200AA05FD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				D76ACFA62CFBEA060020643B /* PostStatusService.swift */,
 				A90EAE612CF7FF2700AA05FD /* UpdateProfileReminder.swift */,
 				A90EAE5F2CF7FA0A00AA05FD /* LocationManager.swift */,
 			);
-			path = Utils;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		A90EAE692CF81DCF00AA05FD /* Controllers */ = {
@@ -348,6 +360,8 @@
 		A912BAAB2CF7F4BF00DF169C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A9CF84802CFF948C00DAACEC /* GenderTypes.swift */,
+				A9CF847E2CFF7FE500DAACEC /* Profile.swift */,
 				A912BAA92CF7F4BF00DF169C /* DiningPost.swift */,
 				A912BAAA2CF7F4BF00DF169C /* Review.swift */,
 			);
@@ -398,7 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				A90EAE6F2CF81DCF00AA05FD /* Post&Review */,
-				A90EAE5E2CF7FA0200AA05FD /* Utils */,
+				A90EAE5E2CF7FA0200AA05FD /* Utilities */,
 				A912BAB42CF7F4DE00DF169C /* Side Menu */,
 				A912BAB02CF7F4C800DF169C /* My Experience Screen */,
 				A912BAAB2CF7F4BF00DF169C /* Models */,
@@ -409,11 +423,12 @@
 				6CA4FA482CDB5A120085FDCD /* Auth */,
 				16CF64972CF67DEF00CD4AC0 /* Post&Review */,
 				A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */,
-				A912BA9D2CF7F4A500DF169C /* GoogleService-Info.plist */,
+				A9CF84BE2D002E6E00DAACEC /* NotificationNames.swift */,
 				A9657E2C2CD44D3500ED9945 /* SceneDelegate.swift */,
 				A9657E302CD44D3500ED9945 /* Main.storyboard */,
 				A9657E2E2CD44D3500ED9945 /* ViewController.swift */,
 				A9657E332CD44D3600ED9945 /* Assets.xcassets */,
+				A9CF848F2CFFF8AA00DAACEC /* GoogleService-Info.plist */,
 				A9657E352CD44D3600ED9945 /* LaunchScreen.storyboard */,
 				A9657E382CD44D3600ED9945 /* Info.plist */,
 			);
@@ -554,9 +569,9 @@
 			files = (
 				A9657E342CD44D3600ED9945 /* Assets.xcassets in Resources */,
 				A9657E322CD44D3500ED9945 /* Base in Resources */,
+				A9CF84902CFFF8AA00DAACEC /* GoogleService-Info.plist in Resources */,
 				A912BA9B2CF7F49500DF169C /* Main.storyboard in Resources */,
 				A912BA9C2CF7F49500DF169C /* LaunchScreen.storyboard in Resources */,
-				A912BA9E2CF7F4A500DF169C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D76D60442CFAD89900A5FC0A /* EditPostView.swift in Sources */,
+				A9CF84812CFF949100DAACEC /* GenderTypes.swift in Sources */,
 				D76D603E2CFAD86000A5FC0A /* CreatePostViewController.swift in Sources */,
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
 				D76D60412CFAD86D00A5FC0A /* ReviewViewController.swift in Sources */,
@@ -707,9 +723,11 @@
 				A90EAE772CF81DCF00AA05FD /* CreatePostViewController.swift in Sources */,
 				A912BA2E2CF7F27C00DF169C /* ProfileEditionViewController.swift in Sources */,
 				A912BA2F2CF7F27C00DF169C /* ProfileDetailViewController.swift in Sources */,
+				A9CF84BF2D002E7200DAACEC /* NotificationNames.swift in Sources */,
 				A912BA302CF7F27C00DF169C /* ProfileDetail.swift in Sources */,
 				A912BA312CF7F27C00DF169C /* ProfileEdition.swift in Sources */,
 				A90EAE622CF7FF3300AA05FD /* UpdateProfileReminder.swift in Sources */,
+				A9CF847F2CFF7FEA00DAACEC /* Profile.swift in Sources */,
 				A9657E2D2CD44D3500ED9945 /* SceneDelegate.swift in Sources */,
 				D76D60402CFAD86900A5FC0A /* EditPostViewController.swift in Sources */,
 				D76ACFA72CFBEA120020643B /* PostStatusService.swift in Sources */,
@@ -1111,6 +1129,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C59D7492CF2D6A3005A1CDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		A9CF849E2CFFFDFB00DAACEC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAuth;
+		};
+		A9CF84A02CFFFDFB00DAACEC /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
+		A9CF84A22CFFFDFB00DAACEC /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

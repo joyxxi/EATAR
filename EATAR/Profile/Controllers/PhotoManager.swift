@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import FirebaseStorage
 
 extension ProfileEditionViewController:PHPickerViewControllerDelegate{
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -45,3 +46,4 @@ extension ProfileEditionViewController: UINavigationControllerDelegate, UIImageP
         }
     }
 }
+

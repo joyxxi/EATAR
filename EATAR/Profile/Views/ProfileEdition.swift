@@ -19,6 +19,8 @@ class ProfileEdition: UIView {
     var cuisinePreferenceLabel: UILabel!
     var cuisineTextField: UITextField!
     var cuisineTableView: UITableView!
+    var favoriteRestaurantLabel: UILabel!
+    var favoriteResetaurantTextField: UITextField!
     var bioLabel: UILabel!
     var bioTextView: UITextView!
     var saveButton: UIButton!
@@ -39,12 +41,26 @@ class ProfileEdition: UIView {
         setupCuisinePreferenceLabel()
         setupCuisineTextField()
         setupCusineTableView()
+        setupFavoriteRestaurantLabel()
+        setupFavoriteRestaurantTextField()
         setupBioLabel()
         setupBioTextView()
         setupSaveButton()
     
         
         initConstraints()
+    }
+    
+    func loadRemoteImage(from url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.profileImage.image = image
+                    }
+                }
+            }
+        }
     }
     
     func setupSaveButton() {
@@ -86,6 +102,24 @@ class ProfileEdition: UIView {
         cuisineTableView.allowsMultipleSelection = true
         cuisineTableView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(cuisineTableView)
+    }
+    
+    func setupFavoriteRestaurantTextField() {
+        favoriteResetaurantTextField = UITextField()
+        favoriteResetaurantTextField.borderStyle = .roundedRect
+        favoriteResetaurantTextField.translatesAutoresizingMaskIntoConstraints = false
+        favoriteResetaurantTextField.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
+        favoriteResetaurantTextField.textColor = .systemBrown
+        scrollView.addSubview(favoriteResetaurantTextField)
+    }
+    
+    func setupFavoriteRestaurantLabel() {
+        favoriteRestaurantLabel = UILabel()
+        favoriteRestaurantLabel.text = "Favorite Restaurant"
+        favoriteRestaurantLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        favoriteRestaurantLabel.textColor = .gray
+        favoriteRestaurantLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(favoriteRestaurantLabel)
     }
     
     func setupCuisineTextField() {
@@ -132,6 +166,7 @@ class ProfileEdition: UIView {
         genderSelectButton.setTitleColor(.systemBrown, for: .normal)
         genderSelectButton.backgroundColor = .white
         genderSelectButton.layer.cornerRadius = 5
+        genderSelectButton.showsMenuAsPrimaryAction = true
 //        genderSelectButton.layer.borderWidth = 1
 //        genderSelectButton.layer.borderColor = UIColor.lightGray.cgColor
         genderSelectButton.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +193,7 @@ class ProfileEdition: UIView {
     
     func setupNameLabel() {
         nameLabel = UILabel()
-        nameLabel.text = "Name"
+        nameLabel.text = "Username"
         nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         nameLabel.textColor = .gray
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -175,7 +210,7 @@ class ProfileEdition: UIView {
     
     func setupProfileImage() {
         profileImage = UIImageView()
-        profileImage.image = UIImage(systemName: "person.circle") // TODO: substitute to profile image later
+        profileImage.image = UIImage(systemName: "person.circle")
         profileImage.tintColor = .systemBrown
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
@@ -249,8 +284,18 @@ class ProfileEdition: UIView {
             cuisineTableView.topAnchor.constraint(equalTo: cuisineTextField.bottomAnchor), //TODO: need to confirm later
             cuisineTableView.centerXAnchor.constraint(equalTo: cuisineTextField.centerXAnchor), // TODO: need to confirm later
             
+            // favorite restuarant label
+            favoriteRestaurantLabel.topAnchor.constraint(equalTo: cuisineTextField.bottomAnchor, constant: 10),
+            favoriteRestaurantLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            
+            // favorite restuarant text field
+            favoriteResetaurantTextField.topAnchor.constraint(equalTo: favoriteRestaurantLabel.bottomAnchor, constant: 5),
+            favoriteResetaurantTextField.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            favoriteResetaurantTextField.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
+            
+            
             // bio label
-            bioLabel.topAnchor.constraint(equalTo: cuisineTextField.bottomAnchor, constant: 10),
+            bioLabel.topAnchor.constraint(equalTo: favoriteResetaurantTextField.bottomAnchor, constant: 10),
             bioLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             
             // bio text view
