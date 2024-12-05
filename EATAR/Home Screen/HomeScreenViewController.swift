@@ -304,8 +304,9 @@ class HomeScreenViewController: UIViewController {
     
     func setupMenuItems() {
         menuView.addMenuItem(title: "Home", target: self, action: #selector(onHomeTapped))
-       menuView.addMenuItem(title: "My Experiences", target: self, action: #selector(onMyExperiencesTapped))
-       menuView.addMenuItem(title: "Profile", target: self, action: #selector(onProfileTapped))
+        menuView.addMenuItem(title: "My Experiences", target: self, action: #selector(onMyExperiencesTapped))
+        menuView.addMenuItem(title: "Profile", target: self, action: #selector(onProfileTapped))
+        menuView.addMenuItem(title: "Log Out", target: self, action: #selector(onLogoutTapped))
    }
 
     
@@ -326,6 +327,13 @@ class HomeScreenViewController: UIViewController {
         let profileDetailVC = ProfileDetailViewController()
         navigationController?.pushViewController(profileDetailVC, animated: true)
 //        profileDetailVC.navigationItem.hidesBackButton = true
+    }
+    
+    @objc func onLogoutTapped(){
+        UserDefaults.standard.removeObject(forKey: "userToken")
+            
+        let loginVC = SignInViewController()
+        navigationController?.pushViewController(loginVC, animated: true)
     }
     
 

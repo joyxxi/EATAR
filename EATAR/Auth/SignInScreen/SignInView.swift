@@ -143,7 +143,7 @@ class SignInView: UIView {
     func setupButtonSignUp(){
         buttonSignUp = UIButton(type: .system)
         buttonSignUp.setTitle("Sign Up", for: .normal)
-        buttonSignUp.setTitleColor(.darkText, for: .normal)
+        buttonSignUp.setTitleColor(.red, for: .normal)
         buttonSignUp.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonSignUp)
     }
