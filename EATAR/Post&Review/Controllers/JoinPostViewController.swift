@@ -42,9 +42,9 @@ class JoinPostViewController: UIViewController {
     
     // MARK: - Setup Methods
     private func setupActions() {
-        joinPostView.backButton.addTarget(self,
-                                        action: #selector(backButtonTapped),
-                                        for: .touchUpInside)
+//        joinPostView.backButton.addTarget(self,
+//                                        action: #selector(backButtonTapped),
+//                                        for: .touchUpInside)
         joinPostView.joinButton.addTarget(self,
                                         action: #selector(joinButtonTapped),
                                         for: .touchUpInside)
@@ -63,6 +63,13 @@ class JoinPostViewController: UIViewController {
         dateFormatter.dateFormat = "MM/dd/yy HH:mm"
         joinPostView.timeLabel.text = "Time: \(dateFormatter.string(from: post.dateTime))"
         joinPostView.locationLabel.text = "Location: \(post.location)"
+        
+        if !post.note.isEmpty {
+                joinPostView.noteLabel.text = "Note: \(post.note)"
+                joinPostView.noteLabel.isHidden = false
+            } else {
+                joinPostView.noteLabel.isHidden = true
+            }
         
         // Update participant circles with current user preview
         let currentUserEmail = Auth.auth().currentUser?.email

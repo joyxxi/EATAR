@@ -10,7 +10,8 @@ import FirebaseFirestore
 
 class JoinPostView: UIView {
     
-    var backButton: UIButton!
+//    var backButton: UIButton!
+    
     var titleLabel: UILabel!
     var restaurantInfoLabel: UILabel!
     var ratingLabel: UILabel!
@@ -21,20 +22,23 @@ class JoinPostView: UIView {
     var zipCodeLabel: UILabel!
     var peopleJoinedLabel: UILabel!
     var joinedPeopleStackView: UIStackView!
+    var noteLabel: UILabel!
     var buttonStackView: UIStackView!
     var joinButton: UIButton!
     var leaveButton: UIButton!
     var participantsContainerView: UIView!
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         
-        setupBackButton()
+//        setupBackButton()
         setupTitleLabel()
         setupRestaurantInfo()
         setupDetailsLabels()
         setupPeopleJoined()
+        setupNoteLabel()
         setupZipCodeLabel()
         setupButtons()
         
@@ -45,13 +49,13 @@ class JoinPostView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupBackButton() {
-        backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        backButton.tintColor = .black
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(backButton)
-    }
+//    func setupBackButton() {
+//        backButton = UIButton(type: .system)
+//        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+//        backButton.tintColor = .black
+//        backButton.translatesAutoresizingMaskIntoConstraints = false
+//        self.addSubview(backButton)
+//    }
     
     func setupTitleLabel() {
         titleLabel = UILabel()
@@ -201,6 +205,15 @@ class JoinPostView: UIView {
         ])
     }
 
+    func setupNoteLabel() {
+        noteLabel = UILabel()
+        noteLabel.font = .systemFont(ofSize: 16)
+        noteLabel.numberOfLines = 0  // Allow multiple lines
+        noteLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(noteLabel)
+    }
+    
+    
     // Helper methods for image handling
     private func fetchUserProfile(email: String, completion: @escaping (String?) -> Void) {
         let db = Firestore.firestore()
@@ -261,12 +274,12 @@ class JoinPostView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
-            
-            titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
+//            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+//            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+//            backButton.widthAnchor.constraint(equalToConstant: 30),
+//            backButton.heightAnchor.constraint(equalToConstant: 30),
+//            
+            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
@@ -291,7 +304,11 @@ class JoinPostView: UIView {
             zipCodeLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
             zipCodeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
-            peopleJoinedLabel.topAnchor.constraint(equalTo: zipCodeLabel.bottomAnchor, constant: 30),
+            noteLabel.topAnchor.constraint(equalTo: zipCodeLabel.bottomAnchor, constant: 8),
+            noteLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            noteLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+                        
+            peopleJoinedLabel.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: 30),
             peopleJoinedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
             participantsContainerView.topAnchor.constraint(equalTo: peopleJoinedLabel.bottomAnchor, constant: 10),
