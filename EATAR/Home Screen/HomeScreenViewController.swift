@@ -21,6 +21,7 @@ class HomeScreenViewController: UIViewController {
     var upcomingExperiencesHeightConstraint: NSLayoutConstraint!
     var isSlideInMenuPresented = false
     let userEmail = Auth.auth().currentUser?.email
+    let locationManager = LocationManager()
     
     let menuView: MenuView = {
         let view = MenuView()
@@ -99,6 +100,9 @@ class HomeScreenViewController: UIViewController {
         upcomingExperiencesHeightConstraint = homeScreen.tableViewUpcomingExperiences.heightAnchor.constraint(equalToConstant: 250)
                 upcomingExperiencesHeightConstraint.isActive = true
         
+        // Get location
+        locationManager.checkLocationAuthorization()
+        
         // Check if profile needs update
         checkProfileUpdate()
         
@@ -121,7 +125,7 @@ class HomeScreenViewController: UIViewController {
                     showUpdateProfileReminder(on: self)
                 }
             } else {
-                print("'isProfile' field is missing or not a boolean.")
+                print("'hasProfile' field is missing or not a boolean.")
             }
         }
     }

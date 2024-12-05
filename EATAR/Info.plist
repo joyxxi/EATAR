@@ -26,5 +26,7 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to provide personalized services.</string>
 </dict>
 </plist>

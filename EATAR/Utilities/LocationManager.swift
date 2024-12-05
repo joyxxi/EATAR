@@ -11,10 +11,20 @@
 
 import CoreLocation
 import UIKit
+import Firebase
+import FirebaseAuth
 
-class LocationManager {
+class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let hasPromptedKey = "HasPromptedForLocationAccess"
+    let geocoder = CLGeocoder()
+    let db = Firestore.firestore()
+    var currentZipCode: String?
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
     
     func checkLocationAuthorization() {
         
@@ -31,6 +41,7 @@ class LocationManager {
             }
         case .authorizedAlways, .authorizedWhenInUse:
             print("Location access granted.")
+            locationManager.requestLocation()
         @unknown default:
             fatalError("Unhandled case for location authorization status.")
         }
@@ -53,9 +64,59 @@ class LocationManager {
             topController.present(alert, animated: true, completion: nil)
         }
         
-        // Handle changes in authorization status (optional)
-        func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-            checkLocationAuthorization()
-        }
+
     }
+    
+    // Handle changes in authorization status (optional)
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           guard let location = locations.first else {
+               print("Failed to get location.")
+               return
+           }
+           
+           // Use CLGeocoder to get the ZIP code
+           geocoder.reverseGeocodeLocation(location) { placemarks, error in
+               if let error = error {
+                   print("Error during reverse geocoding: \(error.localizedDescription)")
+                   return
+               }
+               
+               if let placemark = placemarks?.first,
+                  let postalCode = placemark.postalCode {
+                   print("ZIP code: \(postalCode)")
+                   self.currentZipCode = postalCode
+                   
+                   // Save ZIP code to the database or UserDefaults here
+                   self.storeZipCodeInDatabase(postalCode)
+               } else {
+                   print("No postal code found.")
+               }
+           }
+       }
+       
+       func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+           print("Failed to find user's location: \(error.localizedDescription)")
+       }
+       
+       private func storeZipCodeInDatabase(_ zipCode: String) {
+           let userEmail = Auth.auth().currentUser?.email
+           guard let userEmail = userEmail else {
+               print("Error: User email is nil")
+               return
+           }
+           
+           let userRef = db.collection("users").document(userEmail)
+           
+           userRef.updateData(["location": zipCode]) { error in
+               if let error = error {
+                   print("Error updating ZIP code in database: \(error.localizedDescription)")
+               } else {
+                   print("ZIP code successfully saved.")
+               }
+           }
+       }
 }
