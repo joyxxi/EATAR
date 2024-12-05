@@ -171,6 +171,18 @@ class JoinPostViewController: UIViewController {
             
             self.post = post
             self.updateUI(with: post)
+            
+            if let currentUserEmail = Auth.auth().currentUser?.email {
+                // Check if user is already participating
+                isParticipating = post.participants.contains(currentUserEmail)
+                
+                // Disable join button if user is creator
+                if post.creatorId == currentUserEmail {
+                    joinPostView.joinButton.isEnabled = false
+                    joinPostView.joinButton.backgroundColor = .systemGray
+                    joinPostView.joinButton.setTitle("Your Post", for: .normal)
+                }
+            }
         }
     }
     
