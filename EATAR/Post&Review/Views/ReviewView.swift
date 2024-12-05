@@ -18,17 +18,21 @@ class ReviewView: UIView {
     var reviewTextView: UITextView!
     var addPhotoButton: UIButton!
     var submitButton: UIButton!
+    var photoCollectionView: UICollectionView!
+    var uploadedPhotos: [UIImage] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         
 //        setupBackButton()
+        
         setupTitleLabel()
         setupRatingViews()
         setupReviewTextView()
         setupAddPhotoButton()
         setupSubmitButton()
+        setupPhotoCollection()
         
         initConstraints()
     }
@@ -44,6 +48,33 @@ class ReviewView: UIView {
 //        backButton.translatesAutoresizingMaskIntoConstraints = false
 //        self.addSubview(backButton)
 //    }
+    
+    private func setupPhotoCollection() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.minimumInteritemSpacing = 10
+        
+        photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        photoCollectionView.backgroundColor = .clear
+        photoCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        photoCollectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        self.addSubview(photoCollectionView)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            photoCollectionView.topAnchor.constraint(equalTo: addPhotoButton.bottomAnchor, constant: 20),
+            photoCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            photoCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            photoCollectionView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+    }
+    
+    func addPhoto(_ image: UIImage) {
+            uploadedPhotos.append(image)
+            photoCollectionView.reloadData()
+    }
+    
     
     func setupTitleLabel() {
         titleLabel = UILabel()

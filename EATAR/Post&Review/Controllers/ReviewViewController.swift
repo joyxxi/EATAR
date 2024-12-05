@@ -7,7 +7,9 @@
 
 import UIKit
 import FirebaseFirestore
+import PhotosUI
 import FirebaseAuth
+import FirebaseStorage
 
 class ReviewViewController: UIViewController {
     
@@ -94,14 +96,14 @@ class ReviewViewController: UIViewController {
         submitReview()
     }
     
-    @objc private func addPhotoButtonTapped() {
-        // Create image picker
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true)
-    }
+//    @objc private func addPhotoButtonTapped() {
+//        // Create image picker
+//        let imagePickerController = UIImagePickerController()
+//        imagePickerController.delegate = self
+//        imagePickerController.sourceType = .photoLibrary
+//        imagePickerController.allowsEditing = true
+//        present(imagePickerController, animated: true)
+//    }
     
     // MARK: - Validation Methods
     private func validateInput() -> Bool {
@@ -206,21 +208,80 @@ extension ReviewViewController: UITextViewDelegate {
         }
     }
 }
+    
 
 // MARK: - UIImagePickerControllerDelegate
+// In ReviewViewController.swift
 extension ReviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // TODO: Handle selected image
-        // This would involve:
-        // 1. Upload image to Firebase Storage
-        // 2. Get download URL
-        // 3. Add URL to photos array
-        
-        picker.dismiss(animated: true)
+    @objc private func addPhotoButtonTapped() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
+        
+        if let image = info[.originalImage] as? UIImage {
+            // Show loading indicator
+            let loadingIndicator = UIActivityIndicatorView(style: .large)
+            loadingIndicator.center = view.center
+            view.addSubview(loadingIndicator)
+            loadingIndicator.startAnimating()
+            
+            // Upload to Firebase Storage
+            uploadImage(image) { [weak self] url in
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+                
+                if let url = url {
+                    // Add to review photos array and show preview
+                    self?.reviewView.addPhoto(image)
+                    self?.showAlert(message: "Photo uploaded successfully")
+                } else {
+                    self?.showAlert(message: "Failed to upload photo")
+                }
+            }
+        }
+    }
+    
+    private func uploadImage(_ image: UIImage, completion: @escaping (String?) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.6) else {
+            completion(nil)
+            return
+        }
+        
+        let storageRef = Storage.storage().reference()
+        let imagePath = "review_photos/\(UUID().uuidString).jpg"
+        let imageRef = storageRef.child(imagePath)
+        
+        // Show loading state
+        let loadingIndicator = UIActivityIndicatorView(style: .large)
+        loadingIndicator.center = view.center
+        view.addSubview(loadingIndicator)
+        loadingIndicator.startAnimating()
+        
+        imageRef.putData(imageData, metadata: nil) { [weak self] metadata, error in
+            DispatchQueue.main.async {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.removeFromSuperview()
+            }
+            
+            if let error = error {
+                print("Error uploading image: \(error)")
+                completion(nil)
+                return
+            }
+            
+            imageRef.downloadURL { url, error in
+                if let urlString = url?.absoluteString {
+                    completion(urlString)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
     }
 }

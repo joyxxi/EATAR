@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16D986462D0123E400864B22 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D986452D0123E100864B22 /* PhotoCell.swift */; };
 		21E299113ADE888E9F904A18 /* libPods-EATAR-EATARUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A381D6391C88677302D1C9 /* libPods-EATAR-EATARUITests.a */; };
 		44E4228C5275926668C2EF14 /* libPods-EATARTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */; };
 		67A2142721C49DF54229E467 /* libPods-EATAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A3898BC126A8F3D3AF2AB /* libPods-EATAR.a */; };
@@ -91,6 +92,7 @@
 		16CF64AC2CF688FF00CD4AC0 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		16CF64B32CF68BD300CD4AC0 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		16CF64B52CF68C1B00CD4AC0 /* JoinPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinPostViewController.swift; sourceTree = "<group>"; };
+		16D986452D0123E100864B22 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		1A256E711AB0421BE9357017 /* Pods-EATAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR.release.xcconfig"; path = "Target Support Files/Pods-EATAR/Pods-EATAR.release.xcconfig"; sourceTree = "<group>"; };
 		3494C0011A27BE997AB80AE1 /* Pods-EATAR-EATARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EATAR-EATARUITests.release.xcconfig"; path = "Target Support Files/Pods-EATAR-EATARUITests/Pods-EATAR-EATARUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59DD1EF55BB8A73BFD7A9D4A /* libPods-EATARTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EATARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 		A90EAE6E2CF81DCF00AA05FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				16D986452D0123E100864B22 /* PhotoCell.swift */,
 				A90EAE6A2CF81DCF00AA05FD /* CreatePostView.swift */,
 				A90EAE6B2CF81DCF00AA05FD /* EditPostView.swift */,
 				A90EAE6C2CF81DCF00AA05FD /* JoinPostView.swift */,
@@ -715,6 +718,7 @@
 				A912BAAD2CF7F4BF00DF169C /* Review.swift in Sources */,
 				A90EAE702CF81DCF00AA05FD /* CreatePostView.swift in Sources */,
 				A90EAE712CF81DCF00AA05FD /* JoinPostView.swift in Sources */,
+				16D986462D0123E400864B22 /* PhotoCell.swift in Sources */,
 				A90EAE722CF81DCF00AA05FD /* EditPostView.swift in Sources */,
 				A90EAE732CF81DCF00AA05FD /* ReviewViewController.swift in Sources */,
 				A90EAE742CF81DCF00AA05FD /* ReviewView.swift in Sources */,
