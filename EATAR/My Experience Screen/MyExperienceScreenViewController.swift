@@ -238,6 +238,8 @@ class MyExperienceScreenViewController: UIViewController {
         menuView.addMenuItem(title: "Home", target: self, action: #selector(onHomeTapped))
        menuView.addMenuItem(title: "My Experiences", target: self, action: #selector(onMyExperiencesTapped))
        menuView.addMenuItem(title: "Profile", target: self, action: #selector(onProfileTapped))
+        menuView.addMenuItem(title: "Log Out", target: self, action: #selector(onLogoutTapped))
+        
    }
 
     
@@ -258,6 +260,12 @@ class MyExperienceScreenViewController: UIViewController {
         // Implement navigation logic to Profile
     }
     
+    @objc func onLogoutTapped(){
+        UserDefaults.standard.removeObject(forKey: "userToken")
+            
+        let loginVC = SignInViewController()
+        navigationController?.pushViewController(loginVC, animated: true)
+    }
 
 
 }
