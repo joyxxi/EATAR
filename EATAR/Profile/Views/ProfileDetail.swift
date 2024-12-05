@@ -141,7 +141,8 @@ class ProfileDetail: UIView {
     func setupProfileImage() {
         profileImage = UIImageView()
         profileImage.image = UIImage(systemName: "person.circle")
-        profileImage.contentMode = .scaleAspectFit
+        profileImage.tintColor = .systemBrown
+        profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 75
         profileImage.translatesAutoresizingMaskIntoConstraints = false

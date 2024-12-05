@@ -217,8 +217,30 @@ class ProfileEditionViewController: UIViewController {
     
     @objc func onSaveButtonTapped() {
         print("Save clicked")
+        if let zipcode = profileEditionScreen.locationTextField.text {
+            if !isValidZipcode(zipcode: zipcode) {
+                showErrorAlert(message: "Please provide valid zipcode for location!")
+                return
+            }
+        }
         uploadProfileImageToStorage()
     }
+    
+    func isValidZipcode(zipcode: String) -> Bool {
+        let zipRegex = "^[0-9]{5}$"
+        let zipPredicate = NSPredicate(format: "SELF MATCHES %@", zipRegex)
+        return zipPredicate.evaluate(with: zipcode)
+    }
+    
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        self.present(alert, animated: true)
+    }
+    
+
     
     func getMenuImagePicker() -> UIMenu {
         let menuItems = [

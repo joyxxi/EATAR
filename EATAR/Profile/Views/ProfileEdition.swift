@@ -148,6 +148,7 @@ class ProfileEdition: UIView {
         locationTextField.translatesAutoresizingMaskIntoConstraints = false
         locationTextField.backgroundColor = UIColor(red: 246/255, green: 241/255, blue: 236/255, alpha: 1.0)
         locationTextField.textColor = .systemBrown
+        locationTextField.placeholder = "Type in your zipcode..."
         scrollView.addSubview(locationTextField)
     }
     
