@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ReviewView: UIView {
     
-    var backButton: UIButton!
+//    var backButton: UIButton!
     var titleLabel: UILabel!
     var foodRatingView: RatingView!
     var serviceRatingView: RatingView!
@@ -17,17 +18,21 @@ class ReviewView: UIView {
     var reviewTextView: UITextView!
     var addPhotoButton: UIButton!
     var submitButton: UIButton!
+    var photoCollectionView: UICollectionView!
+    var uploadedPhotos: [UIImage] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         
-        setupBackButton()
+//        setupBackButton()
+        
         setupTitleLabel()
         setupRatingViews()
         setupReviewTextView()
         setupAddPhotoButton()
         setupSubmitButton()
+        setupPhotoCollection()
         
         initConstraints()
     }
@@ -36,13 +41,40 @@ class ReviewView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupBackButton() {
-        backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        backButton.tintColor = .black
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(backButton)
+//    func setupBackButton() {
+//        backButton = UIButton(type: .system)
+//        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+//        backButton.tintColor = .black
+//        backButton.translatesAutoresizingMaskIntoConstraints = false
+//        self.addSubview(backButton)
+//    }
+    
+    private func setupPhotoCollection() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.minimumInteritemSpacing = 10
+        
+        photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        photoCollectionView.backgroundColor = .clear
+        photoCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        photoCollectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        self.addSubview(photoCollectionView)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            photoCollectionView.topAnchor.constraint(equalTo: addPhotoButton.bottomAnchor, constant: 20),
+            photoCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            photoCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            photoCollectionView.heightAnchor.constraint(equalToConstant: 120)
+        ])
     }
+    
+    func addPhoto(_ image: UIImage) {
+            uploadedPhotos.append(image)
+            photoCollectionView.reloadData()
+    }
+    
     
     func setupTitleLabel() {
         titleLabel = UILabel()
@@ -96,12 +128,12 @@ class ReviewView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
-            
-            titleLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
+//            backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+//            backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+//            backButton.widthAnchor.constraint(equalToConstant: 30),
+//            backButton.heightAnchor.constraint(equalToConstant: 30),
+//            
+            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
             foodRatingView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),

@@ -213,7 +213,7 @@ class CreatePostViewController: UIViewController {
             
             // Show success message and return to previous screen
             self.showAlert(message: "Post created successfully") { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismiss(animated: true)
             }
         }
     }
