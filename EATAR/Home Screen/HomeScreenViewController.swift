@@ -20,6 +20,7 @@ class HomeScreenViewController: UIViewController {
     var isUpcomingExpanded = true
     var upcomingExperiencesHeightConstraint: NSLayoutConstraint!
     var isSlideInMenuPresented = false
+    let userEmail = Auth.auth().currentUser?.email
     
     let menuView: MenuView = {
         let view = MenuView()
@@ -98,7 +99,33 @@ class HomeScreenViewController: UIViewController {
         upcomingExperiencesHeightConstraint = homeScreen.tableViewUpcomingExperiences.heightAnchor.constraint(equalToConstant: 250)
                 upcomingExperiencesHeightConstraint.isActive = true
         
+        // Check if profile needs update
+        checkProfileUpdate()
+        
     }
+    
+    func checkProfileUpdate() {
+        let userRef = database.collection("users").document(userEmail ?? "")
+        userRef.getDocument() { document, error in
+            if let error = error {
+                print("Error fetching user: \(error.localizedDescription)")
+                return
+            }
+            guard let document = document, document.exists else {
+                print("User does not exist.")
+                return
+            }
+            
+            if let hasProfile = document.get("hasProfile") as? Bool {
+                if !hasProfile {
+                    showUpdateProfileReminder(on: self)
+                }
+            } else {
+                print("'isProfile' field is missing or not a boolean.")
+            }
+        }
+    }
+
     
     func fetchUpcomingExperiences() {
         guard let userEmail =  Auth.auth().currentUser?.email else { return }
