@@ -54,20 +54,6 @@ class MyExperienceScreenViewController: UIViewController {
         myExperienceScreen.tableViewJoinedExperience.delegate = self
         myExperienceScreen.tableViewJoinedExperience.separatorStyle = .none
         
-        /*
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
-        //Add Sample Data
-        myPosts.append(
-            DiningPost(id: "1", restaurantName: "Shang Cafe", cuisine: "Chinese", maxPeople: 4, currentPeople: 1, dateTime:dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, San Jose, CA", zipCode: "94089", note: "", creatorId: "1", participants: ["1"], status: .active, createdAt:dateFormatter.date(from: "10/11/2024 11:00")!))
-        myPosts.append(
-            DiningPost(id: "2", restaurantName:"Dish & Dash", cuisine: "Mediterran", maxPeople: 4, currentPeople: 2, dateTime: dateFormatter.date(from: "10/15/2024 12:30")!, location: "xx St, Sunnyvale, CA", zipCode: "94091", note: "", creatorId: "2", participants: ["1", "2"], status: .active, createdAt: dateFormatter.date(from: "10/12/2024 11:00")!))
-        
-        joinedExperiences.append(
-            DiningPost(id: "3", restaurantName:"Pacific Catch", cuisine: "American", maxPeople: 2, currentPeople: 1, dateTime: dateFormatter.date(from: "10/16/2024 12:00")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "3", participants: ["3"], status: .active, createdAt: dateFormatter.date(from: "10/14/2024 11:00")!))
-        joinedExperiences.append(
-            DiningPost(id: "4", restaurantName:"Sweetgreen", cuisine: "American", maxPeople: 3, currentPeople: 1, dateTime: dateFormatter.date(from: "10/17/2024 12:15")!, location: "xx St, Santa Clara, CA", zipCode: "94090", note: "", creatorId: "4", participants: ["4"], status: .active, createdAt: dateFormatter.date(from: "10/15/2024 11:00")!))
-         */
         fetchMyPosts()
         fetchJoinedExperiences()
         
@@ -99,7 +85,6 @@ class MyExperienceScreenViewController: UIViewController {
         database.collection("posts")
             .whereField("creatorId", isEqualTo: userEmail)
              .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue )
-             .whereField("dateTime", isGreaterThan: Date())
              .order(by: "dateTime")
              .getDocuments { [weak self] snapshot, error in
                  guard let self = self else { return }
@@ -130,7 +115,6 @@ class MyExperienceScreenViewController: UIViewController {
         database.collection("posts")
             .whereField("participants", arrayContains: userEmail)
             .whereField("status", isEqualTo: DiningPost.PostStatus.completed.rawValue )
-            .whereField("dateTime", isLessThan: Date())
              .order(by: "dateTime", descending: true)
              .getDocuments { [weak self] snapshot, error in
                  guard let self = self else { return }

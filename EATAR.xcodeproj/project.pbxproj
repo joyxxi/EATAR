@@ -31,14 +31,9 @@
 		A912BA312CF7F27C00DF169C /* ProfileEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA2B2CF7F27C00DF169C /* ProfileEdition.swift */; };
 		A912BA9B2CF7F49500DF169C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A912BA992CF7F49500DF169C /* Main.storyboard */; };
 		A912BA9C2CF7F49500DF169C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A912BA972CF7F49500DF169C /* LaunchScreen.storyboard */; };
-		A912BAA32CF7F4AD00DF169C /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA02CF7F4AD00DF169C /* HomeScreenView.swift */; };
-		A912BAA42CF7F4AD00DF169C /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BA9F2CF7F4AD00DF169C /* ExperienceTableViewCell.swift */; };
-		A912BAA52CF7F4AD00DF169C /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA12CF7F4AD00DF169C /* HomeScreenViewController.swift */; };
 		A912BAA82CF7F4B700DF169C /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA62CF7F4B700DF169C /* PostManager.swift */; };
 		A912BAAC2CF7F4BF00DF169C /* DiningPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAA92CF7F4BF00DF169C /* DiningPost.swift */; };
 		A912BAAD2CF7F4BF00DF169C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAAA2CF7F4BF00DF169C /* Review.swift */; };
-		A912BAB12CF7F4C800DF169C /* MyExperienceScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAAF2CF7F4C800DF169C /* MyExperienceScreenViewController.swift */; };
-		A912BAB22CF7F4C800DF169C /* MyExperienceScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAAE2CF7F4C800DF169C /* MyExperienceScreenView.swift */; };
 		A912BAB52CF7F4DE00DF169C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A912BAB32CF7F4DE00DF169C /* MenuView.swift */; };
 		A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E2A2CD44D3500ED9945 /* AppDelegate.swift */; };
 		A9657E2D2CD44D3500ED9945 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9657E2C2CD44D3500ED9945 /* SceneDelegate.swift */; };
@@ -115,14 +110,9 @@
 		A912BA2B2CF7F27C00DF169C /* ProfileEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdition.swift; sourceTree = "<group>"; };
 		A912BA962CF7F49500DF169C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A912BA982CF7F49500DF169C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		A912BA9F2CF7F4AD00DF169C /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
-		A912BAA02CF7F4AD00DF169C /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
-		A912BAA12CF7F4AD00DF169C /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		A912BAA62CF7F4B700DF169C /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
 		A912BAA92CF7F4BF00DF169C /* DiningPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningPost.swift; sourceTree = "<group>"; };
 		A912BAAA2CF7F4BF00DF169C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
-		A912BAAE2CF7F4C800DF169C /* MyExperienceScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExperienceScreenView.swift; sourceTree = "<group>"; };
-		A912BAAF2CF7F4C800DF169C /* MyExperienceScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExperienceScreenViewController.swift; sourceTree = "<group>"; };
 		A912BAB32CF7F4DE00DF169C /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		A949F1592CD855C900E49EEC /* ProfileDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetail.swift; sourceTree = "<group>"; };
 		A949F15B2CD855D900E49EEC /* ProfileEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdition.swift; sourceTree = "<group>"; };
@@ -158,6 +148,10 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6CA4FA482CDB5A120085FDCD /* Auth */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Auth; sourceTree = "<group>"; };
+		D71FA6B92D02CC2300ED7CF6 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		D71FA6BA2D02CC3300ED7CF6 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
+		D71FA6BB2D02CC7000ED7CF6 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
+		D71FA6BC2D02CC7B00ED7CF6 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,9 +339,8 @@
 		A912BAA22CF7F4AD00DF169C /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
-				A912BA9F2CF7F4AD00DF169C /* ExperienceTableViewCell.swift */,
-				A912BAA02CF7F4AD00DF169C /* HomeScreenView.swift */,
-				A912BAA12CF7F4AD00DF169C /* HomeScreenViewController.swift */,
+				D71FA6BC2D02CC7B00ED7CF6 /* Views */,
+				D71FA6BB2D02CC7000ED7CF6 /* Controllers */,
 			);
 			path = "Home Screen";
 			sourceTree = "<group>";
@@ -374,8 +367,8 @@
 		A912BAB02CF7F4C800DF169C /* My Experience Screen */ = {
 			isa = PBXGroup;
 			children = (
-				A912BAAE2CF7F4C800DF169C /* MyExperienceScreenView.swift */,
-				A912BAAF2CF7F4C800DF169C /* MyExperienceScreenViewController.swift */,
+				D71FA6B92D02CC2300ED7CF6 /* Views */,
+				D71FA6BA2D02CC3300ED7CF6 /* Controllers */,
 			);
 			path = "My Experience Screen";
 			sourceTree = "<group>";
@@ -474,6 +467,10 @@
 			);
 			fileSystemSynchronizedGroups = (
 				6CA4FA482CDB5A120085FDCD /* Auth */,
+				D71FA6B92D02CC2300ED7CF6 /* Views */,
+				D71FA6BA2D02CC3300ED7CF6 /* Controllers */,
+				D71FA6BB2D02CC7000ED7CF6 /* Controllers */,
+				D71FA6BC2D02CC7B00ED7CF6 /* Views */,
 			);
 			name = EATAR;
 			productName = EATAR;
@@ -707,9 +704,7 @@
 				D76D603E2CFAD86000A5FC0A /* CreatePostViewController.swift in Sources */,
 				A9657E2F2CD44D3500ED9945 /* ViewController.swift in Sources */,
 				D76D60412CFAD86D00A5FC0A /* ReviewViewController.swift in Sources */,
-				A912BAB12CF7F4C800DF169C /* MyExperienceScreenViewController.swift in Sources */,
 				D76D60432CFAD89400A5FC0A /* JoinPostView.swift in Sources */,
-				A912BAB22CF7F4C800DF169C /* MyExperienceScreenView.swift in Sources */,
 				A912BAA82CF7F4B700DF169C /* PostManager.swift in Sources */,
 				A9657E2B2CD44D3500ED9945 /* AppDelegate.swift in Sources */,
 				D76D603F2CFAD86500A5FC0A /* JoinPostViewController.swift in Sources */,
@@ -737,11 +732,8 @@
 				D76ACFA72CFBEA120020643B /* PostStatusService.swift in Sources */,
 				D76D60452CFAD89F00A5FC0A /* ReviewView.swift in Sources */,
 				A912BAB52CF7F4DE00DF169C /* MenuView.swift in Sources */,
-				A912BAA32CF7F4AD00DF169C /* HomeScreenView.swift in Sources */,
 				A90EAE602CF7FA0E00AA05FD /* LocationManager.swift in Sources */,
 				A90EAE642CF81ADB00AA05FD /* PhotoManager.swift in Sources */,
-				A912BAA42CF7F4AD00DF169C /* ExperienceTableViewCell.swift in Sources */,
-				A912BAA52CF7F4AD00DF169C /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

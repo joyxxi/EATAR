@@ -84,7 +84,6 @@ class HomeScreenView: UIView {
     func updateUpcomingExperiencesView(hasExperiences: Bool) {
         // Show/hide the table view and no experiences label based on experiences availability
         tableViewUpcomingExperiences.isHidden = !hasExperiences
-        //buttonExpand.isHidden = !hasExperiences
         
         // Add the "No upcoming experiences" label to the content wrapper if it's not already added
         if labelNoUpcomingExperiences.superview == nil {
