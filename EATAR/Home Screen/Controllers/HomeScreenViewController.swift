@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-
+import Foundation
 
 class HomeScreenViewController: UIViewController {
     let database = Firestore.firestore()
@@ -41,11 +41,17 @@ class HomeScreenViewController: UIViewController {
         setupViewHierarchy()
         setupConstraints()
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Home"
+        
+        NotificationCenter.default.addObserver(self,
+                                                 selector: #selector(handlePostUpdate),
+                                                 name: .didUpdatePost,
+                                                 object: nil)
         
         homeScreen.tableViewUpcomingExperiences.dataSource = self
         homeScreen.tableViewUpcomingExperiences.delegate = self
@@ -91,6 +97,18 @@ class HomeScreenViewController: UIViewController {
         checkProfileUpdate()
         
     }
+
+    
+    @objc func handlePostUpdate() {
+        fetchUpcomingExperiences()
+        fetchRecommendedExperiences()
+        
+        DispatchQueue.main.async {
+            self.homeScreen.tableViewUpcomingExperiences.reloadData()
+            self.homeScreen.tableViewRecommendedExperiences.reloadData()
+        }
+    }
+
     
     func checkProfileUpdate() {
         let userRef = database.collection("users").document(userEmail ?? "")
@@ -116,34 +134,33 @@ class HomeScreenViewController: UIViewController {
 
     
     func fetchUpcomingExperiences() {
-        guard let userEmail =  Auth.auth().currentUser?.email else { return }
+        guard let userEmail = Auth.auth().currentUser?.email else { return }
         
         database.collection("posts")
             .whereField("participants", arrayContains: userEmail)
-             .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue )
-             .whereField("dateTime", isGreaterThan: Date())
-             .order(by: "dateTime")
-             .getDocuments { [weak self] snapshot, error in
-                 guard let self = self else { return }
-                 
-                 if let error = error {
-                     print("Error fetching upcoming experiences: \(error.localizedDescription)")
-                     return
-                 }
-                 
-                 self.upcomingExperiences = snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? []
-                 
-                 if self.upcomingExperiences.count == 0{
-                     self.homeScreen.updateUpcomingExperiencesView(hasExperiences: false)
-                 }
-
-                 print("DEBUG: Upcoming Experiences count: \(self.upcomingExperiences.count)")
-                 
-                 DispatchQueue.main.async {
-                     self.homeScreen.tableViewUpcomingExperiences.reloadData()
-                 }
-             }
-     }
+            .whereField("status", isEqualTo: DiningPost.PostStatus.active.rawValue)
+            .whereField("dateTime", isGreaterThan: Date())
+            .order(by: "dateTime")
+            .getDocuments { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error fetching upcoming experiences: \(error.localizedDescription)")
+                    return
+                }
+                
+                self.upcomingExperiences = snapshot?.documents.compactMap { DiningPost.fromFirestore($0) } ?? []
+                
+                print("DEBUG: Fetched Upcoming count after join: \(self.upcomingExperiences.count)")  // Add this debug line
+                
+                DispatchQueue.main.async {
+                    self.homeScreen.tableViewUpcomingExperiences.reloadData()
+                    if self.upcomingExperiences.count == 0 {
+                        self.homeScreen.updateUpcomingExperiencesView(hasExperiences: false)
+                    }
+                }
+            }
+    }
     
     func fetchRecommendedExperiences() {
         guard let currentUser = Auth.auth().currentUser else { return }

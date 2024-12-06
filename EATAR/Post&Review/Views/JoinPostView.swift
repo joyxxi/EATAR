@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
 
 class JoinPostView: UIView {
     
@@ -28,6 +30,7 @@ class JoinPostView: UIView {
     var leaveButton: UIButton!
     var participantsContainerView: UIView!
     
+    private let db = Firestore.firestore()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -131,59 +134,62 @@ class JoinPostView: UIView {
         var currentColumn = 0
         
         for i in 0..<maxPeople {
-            // Create container view for the circle
-            let avatarContainer = UIView()
-            avatarContainer.translatesAutoresizingMaskIntoConstraints = false
-            avatarContainer.layer.cornerRadius = circleSize / 2
-            avatarContainer.clipsToBounds = true
-            
-            // Create imageView for profile picture
             let avatarImageView = UIImageView()
             avatarImageView.contentMode = .scaleAspectFill
+            avatarImageView.clipsToBounds = true
+            avatarImageView.layer.cornerRadius = circleSize / 2
+            avatarImageView.backgroundColor = .systemGray5
             avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-            avatarContainer.addSubview(avatarImageView)
+            
+            // Set default image
+            avatarImageView.image = UIImage(systemName: "person.circle")
+            avatarImageView.tintColor = .systemBrown
             
             if i < participants.count {
-                // Existing participant
-                fetchUserProfile(email: participants[i]) { profileImageUrl in
-                    if let imageUrl = profileImageUrl {
-                        self.loadImage(from: imageUrl, into: avatarImageView)
+                loadUserPhotoURL(for: participants[i]) { url in
+                    if let url = url {
+                        // Use the same loading pattern as ProfileDetail
+                        DispatchQueue.global().async {
+                            if let data = try? Data(contentsOf: url) {
+                                if let image = UIImage(data: data) {
+                                    DispatchQueue.main.async {
+                                        avatarImageView.image = image
+                                        avatarImageView.backgroundColor = .clear
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                avatarContainer.backgroundColor = .systemGray3
             } else if i == participants.count && currentUserEmail != nil {
-                // Next empty spot (preview for current user)
-                fetchUserProfile(email: currentUserEmail!) { profileImageUrl in
-                    if let imageUrl = profileImageUrl {
-                        self.loadImage(from: imageUrl, into: avatarImageView)
-                        avatarImageView.alpha = 0.5 // Semi-transparent to indicate preview
+                loadUserPhotoURL(for: currentUserEmail!) { url in
+                    if let url = url {
+                        // Use the same loading pattern as ProfileDetail
+                        DispatchQueue.global().async {
+                            if let data = try? Data(contentsOf: url) {
+                                if let image = UIImage(data: data) {
+                                    DispatchQueue.main.async {
+                                        avatarImageView.image = image
+                                        avatarImageView.backgroundColor = .clear
+                                        avatarImageView.alpha = 0.5
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                avatarContainer.backgroundColor = .systemGray5
-            } else {
-                // Empty spot
-                avatarContainer.backgroundColor = .systemGray5
             }
             
-            participantsContainerView.addSubview(avatarContainer)
+            participantsContainerView.addSubview(avatarImageView)
             
-            // Layout constraints for avatar image
-            NSLayoutConstraint.activate([
-                avatarImageView.topAnchor.constraint(equalTo: avatarContainer.topAnchor),
-                avatarImageView.leadingAnchor.constraint(equalTo: avatarContainer.leadingAnchor),
-                avatarImageView.trailingAnchor.constraint(equalTo: avatarContainer.trailingAnchor),
-                avatarImageView.bottomAnchor.constraint(equalTo: avatarContainer.bottomAnchor)
-            ])
-            
-            // Calculate and set position
             let xPosition = CGFloat(currentColumn) * (circleSize + horizontalSpacing)
             let yPosition = CGFloat(currentRow) * (circleSize + verticalSpacing)
             
             NSLayoutConstraint.activate([
-                avatarContainer.leadingAnchor.constraint(equalTo: participantsContainerView.leadingAnchor, constant: xPosition),
-                avatarContainer.topAnchor.constraint(equalTo: participantsContainerView.topAnchor, constant: yPosition),
-                avatarContainer.widthAnchor.constraint(equalToConstant: circleSize),
-                avatarContainer.heightAnchor.constraint(equalToConstant: circleSize)
+                avatarImageView.leadingAnchor.constraint(equalTo: participantsContainerView.leadingAnchor, constant: xPosition),
+                avatarImageView.topAnchor.constraint(equalTo: participantsContainerView.topAnchor, constant: yPosition),
+                avatarImageView.widthAnchor.constraint(equalToConstant: circleSize),
+                avatarImageView.heightAnchor.constraint(equalToConstant: circleSize)
             ])
             
             currentColumn += 1
@@ -204,6 +210,7 @@ class JoinPostView: UIView {
             participantsContainerView.widthAnchor.constraint(equalToConstant: containerWidth)
         ])
     }
+
 
     func setupNoteLabel() {
         noteLabel = UILabel()
@@ -238,6 +245,27 @@ class JoinPostView: UIView {
             }
         }.resume()
     }
+    
+    func loadUserPhotoURL(for email: String, completion: @escaping (URL?) -> Void) {
+        if let currentUser = Auth.auth().currentUser,
+           currentUser.email == email {
+            // If it's current user, use Auth photoURL directly
+            completion(currentUser.photoURL)
+        } else {
+            // For other users, get photoURL from Firestore
+            db.collection("users").document(email).getDocument { snapshot, error in
+                if let data = snapshot?.data(),
+                   let photoURLString = data["photoURL"] as? String,
+                   !photoURLString.isEmpty,
+                   let photoURL = URL(string: photoURLString) {
+                    completion(photoURL)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
     
     func setupButtons() {
         buttonStackView = UIStackView()

@@ -139,6 +139,8 @@ class ProfileEditionViewController: UIViewController {
 
     }
     
+    
+    
     func updateProfile() {
         let uwname = profileEditionScreen.nameTextField.text
         let uwgender = profileEditionScreen.genderSelectButton.titleLabel?.text
@@ -197,6 +199,8 @@ class ProfileEditionViewController: UIViewController {
             }
         })
     }
+    
+    
         
     
     func getGenderMenuTypes() -> UIMenu {
