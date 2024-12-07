@@ -146,39 +146,14 @@ class JoinPostView: UIView {
             avatarImageView.tintColor = .systemBrown
             
             if i < participants.count {
-                loadUserPhotoURL(for: participants[i]) { url in
-                    if let url = url {
-                        // Use the same loading pattern as ProfileDetail
-                        DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: url) {
-                                if let image = UIImage(data: data) {
-                                    DispatchQueue.main.async {
-                                        avatarImageView.image = image
-                                        avatarImageView.backgroundColor = .clear
-                                    }
-                                }
-                            }
-                        }
+                        // Load existing participant's photo
+                        loadUserProfileImage(email: participants[i], imageView: avatarImageView)
+                    } else if i == participants.count && currentUserEmail != nil {
+                        // Load preview of current user's photo
+                        loadUserProfileImage(email: currentUserEmail!, imageView: avatarImageView)
+                        avatarImageView.alpha = 0.5
                     }
-                }
-            } else if i == participants.count && currentUserEmail != nil {
-                loadUserPhotoURL(for: currentUserEmail!) { url in
-                    if let url = url {
-                        // Use the same loading pattern as ProfileDetail
-                        DispatchQueue.global().async {
-                            if let data = try? Data(contentsOf: url) {
-                                if let image = UIImage(data: data) {
-                                    DispatchQueue.main.async {
-                                        avatarImageView.image = image
-                                        avatarImageView.backgroundColor = .clear
-                                        avatarImageView.alpha = 0.5
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+                    
             
             participantsContainerView.addSubview(avatarImageView)
             
@@ -234,38 +209,56 @@ class JoinPostView: UIView {
         }
     }
 
-    private func loadImage(from urlString: String, into imageView: UIImageView) {
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data = data {
-                DispatchQueue.main.async {
-                    imageView.image = UIImage(data: data)
-                }
-            }
-        }.resume()
-    }
+//    private func loadImage(from urlString: String, into imageView: UIImageView) {
+//        guard let url = URL(string: urlString) else { return }
+//        
+//        URLSession.shared.dataTask(with: url) { data, _, error in
+//            if let data = data {
+//                DispatchQueue.main.async {
+//                    imageView.image = UIImage(data: data)
+//                }
+//            }
+//        }.resume()
+//    }
+//    
+//    func loadUserPhotoURL(for email: String, completion: @escaping (URL?) -> Void) {
+//        if let currentUser = Auth.auth().currentUser,
+//           currentUser.email == email {
+//            // If it's current user, use Auth photoURL directly
+//            completion(currentUser.photoURL)
+//        } else {
+//            // For other users, get photoURL from Firestore
+//            db.collection("users").document(email).getDocument { snapshot, error in
+//                if let data = snapshot?.data(),
+//                   let photoURLString = data["photoURL"] as? String,
+//                   !photoURLString.isEmpty,
+//                   let photoURL = URL(string: photoURLString) {
+//                    completion(photoURL)
+//                } else {
+//                    completion(nil)
+//                }
+//            }
+//        }
+//    }
     
-    func loadUserPhotoURL(for email: String, completion: @escaping (URL?) -> Void) {
-        if let currentUser = Auth.auth().currentUser,
-           currentUser.email == email {
-            // If it's current user, use Auth photoURL directly
-            completion(currentUser.photoURL)
-        } else {
-            // For other users, get photoURL from Firestore
-            db.collection("users").document(email).getDocument { snapshot, error in
-                if let data = snapshot?.data(),
-                   let photoURLString = data["photoURL"] as? String,
-                   !photoURLString.isEmpty,
-                   let photoURL = URL(string: photoURLString) {
-                    completion(photoURL)
-                } else {
-                    completion(nil)
+    private func loadUserProfileImage(email: String, imageView: UIImageView) {
+        db.collection("users").document(email).getDocument { snapshot, error in
+            if let data = snapshot?.data(),
+               let photoURLString = data["photoURL"] as? String,
+               let photoURL = URL(string: photoURLString) {
+                
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: photoURL) {
+                        if let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                imageView.image = image
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-    
     
     func setupButtons() {
         buttonStackView = UIStackView()
