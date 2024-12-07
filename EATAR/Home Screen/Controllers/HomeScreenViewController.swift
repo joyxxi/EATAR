@@ -155,9 +155,12 @@ class HomeScreenViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.homeScreen.tableViewUpcomingExperiences.reloadData()
-                    if self.upcomingExperiences.count == 0 {
-                        self.homeScreen.updateUpcomingExperiencesView(hasExperiences: false)
-                    }
+                    self.homeScreen.updateUpcomingExperiencesView(hasExperiences: self.upcomingExperiences.count > 0)
+
+                    //if self.upcomingExperiences.count == 0 {
+                        //self.homeScreen.updateUpcomingExperiencesView(hasExperiences: false)
+                        //print("DEBUG: Upcoming experience count is 0")
+                   // }
                 }
             }
     }
