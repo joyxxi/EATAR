@@ -139,6 +139,8 @@ class ProfileEditionViewController: UIViewController {
 
     }
     
+    
+    
     func updateProfile() {
         let uwname = profileEditionScreen.nameTextField.text
         let uwgender = profileEditionScreen.genderSelectButton.titleLabel?.text
@@ -184,19 +186,28 @@ class ProfileEditionViewController: UIViewController {
     }
     
     func setImageURLInFirebaseAuth() {
-        
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.photoURL = pickedImageURL
         
-        changeRequest?.commitChanges(completion: {(error) in
-            if error != nil{
-                print("Error occured: \(String(describing: error))")
-            }else{
-                self.updateProfile()
-                
+        changeRequest?.commitChanges { [weak self] error in
+            if let error = error {
+                print("Error occurred: \(error)")
+            } else {
+                // Also store the URL in Firestore for other users to access
+                guard let userEmail = self?.userEmail else { return }
+                self?.db.collection("users").document(userEmail).updateData([
+                    "photoURL": self?.pickedImageURL?.absoluteString ?? ""
+                ]) { error in
+                    if let error = error {
+                        print("Error storing photo URL in Firestore: \(error)")
+                    }
+                    self?.updateProfile()
+                }
             }
-        })
+        }
     }
+    
+    
         
     
     func getGenderMenuTypes() -> UIMenu {

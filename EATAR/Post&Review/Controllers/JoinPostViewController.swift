@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import Foundation
 
 class JoinPostViewController: UIViewController {
     
@@ -84,12 +85,25 @@ class JoinPostViewController: UIViewController {
     }
     
     private func updateButtonsState() {
-        joinPostView.joinButton.isEnabled = !isParticipating && post?.currentPeople ?? 0 < post?.maxPeople ?? 0
-        joinPostView.leaveButton.isEnabled = isParticipating
-        
-        // Update button colors based on state
-        joinPostView.joinButton.backgroundColor = joinPostView.joinButton.isEnabled ? .systemBrown : .systemGray
-        joinPostView.leaveButton.backgroundColor = joinPostView.leaveButton.isEnabled ? .systemBrown : .systemGray
+        if let currentUserEmail = Auth.auth().currentUser?.email,
+           let post = post {
+            // If user is creator
+            if post.creatorId == currentUserEmail {
+                joinPostView.joinButton.isEnabled = false
+                joinPostView.leaveButton.isEnabled = false
+                joinPostView.joinButton.backgroundColor = .systemGray
+                joinPostView.leaveButton.backgroundColor = .systemGray
+                joinPostView.joinButton.setTitle("Your Post", for: .normal)
+            } else {
+                // If user is participant or potential participant
+                joinPostView.joinButton.isEnabled = !isParticipating && post.currentPeople < post.maxPeople
+                joinPostView.leaveButton.isEnabled = isParticipating
+                
+                joinPostView.joinButton.backgroundColor = joinPostView.joinButton.isEnabled ? .systemBrown : .systemGray
+                joinPostView.leaveButton.backgroundColor = joinPostView.leaveButton.isEnabled ? .systemBrown : .systemGray
+                joinPostView.joinButton.setTitle("Join", for: .normal)
+            }
+        }
     }
     
     // MARK: - Action Methods
@@ -170,6 +184,12 @@ class JoinPostViewController: UIViewController {
             )
             
             self.post = post
+            
+            // Check participation status BEFORE updating UI
+            if let currentUserEmail = Auth.auth().currentUser?.email {
+                self.isParticipating = post.participants.contains(currentUserEmail)
+            }
+            
             self.updateUI(with: post)
             
             if let currentUserEmail = Auth.auth().currentUser?.email {
@@ -183,8 +203,25 @@ class JoinPostViewController: UIViewController {
                     joinPostView.joinButton.setTitle("Your Post", for: .normal)
                 }
             }
+            
+            if let currentUserEmail = Auth.auth().currentUser?.email {
+                if post.creatorId == currentUserEmail {
+                    // If user is creator
+                    self.joinPostView.joinButton.isEnabled = false
+                    self.joinPostView.joinButton.backgroundColor = .systemGray
+                    self.joinPostView.joinButton.setTitle("Your Post", for: .normal)
+                    self.joinPostView.leaveButton.isEnabled = false
+                    self.joinPostView.leaveButton.backgroundColor = .systemGray
+                } else {
+                    // If user is participant
+                    self.joinPostView.joinButton.isEnabled = !self.isParticipating && post.currentPeople < post.maxPeople
+                    self.joinPostView.leaveButton.isEnabled = self.isParticipating
+                }
+            }
         }
     }
+    
+    
     
     private func joinPost(userEmail: String) {
         let loadingIndicator = showLoadingIndicator()
@@ -244,6 +281,10 @@ class JoinPostViewController: UIViewController {
             if let post = self.post {
                 self.updateUI(with: post)
             }
+            // After successful join/leave
+            DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .didUpdatePost, object: nil)
+                }
             
             self.showAlert(message: "Successfully joined the dining experience!")
         }
@@ -298,6 +339,11 @@ class JoinPostViewController: UIViewController {
             if let post = self.post {
                 self.updateUI(with: post)
             }
+            
+            // After successful join/leave
+            DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .didUpdatePost, object: nil)
+                }
             
             self.showAlert(message: "Successfully left the dining experience")
         }
