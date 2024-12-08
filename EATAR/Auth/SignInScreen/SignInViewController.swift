@@ -103,7 +103,7 @@ class SignInViewController: UIViewController {
                 print("hasProfile for user \(email): \(hasProfile)")
 
                 if hasProfile {
-                    self.showAlert(title: "Welcome!", message: "Welcome back!")
+                    self.showAlert(title: "Hey,EATAR!", message: "Welcome back!")
                     // Pop HomeScreen
                     let homeScreenVC = HomeScreenViewController()
                     self.navigationController?.pushViewController(homeScreenVC, animated: true)

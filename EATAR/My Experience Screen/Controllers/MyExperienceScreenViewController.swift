@@ -244,6 +244,8 @@ class MyExperienceScreenViewController: UIViewController {
     @objc func onProfileTapped() {
         print("Profile tapped")
         // Implement navigation logic to Profile
+        let profileDetailVC = ProfileDetailViewController()
+        navigationController?.pushViewController(profileDetailVC, animated: true)
     }
     
     @objc func onLogoutTapped(){
